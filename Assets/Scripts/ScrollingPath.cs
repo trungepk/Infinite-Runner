@@ -10,13 +10,15 @@ public class ScrollingPath : MonoBehaviour {
     private BoxCollider pathCollider;
     private float pathLength;
 
-	void Start () {
+    public float ScrollingSpeed{ get { return scrollingSpeed; } }
+
+    void Start () {
         //pathCollider = GetComponent<BoxCollider>();
         pathLength = transform.localScale.z;
 	}
 	
 	void Update () {
-        transform.position -= new Vector3(0, 0, 1) * Time.deltaTime * scrollingSpeed;
+        transform.position -= new Vector3(0, 0, 1) * Time.deltaTime * ScrollingSpeed;
         if(transform.position.z < -pathLength)
         {
             Repositioning();
