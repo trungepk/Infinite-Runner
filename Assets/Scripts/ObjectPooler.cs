@@ -32,7 +32,6 @@ public class ObjectPooler : MonoBehaviour {
                 pooledObjects.Add(obj);
             }
         }
-        
     }
 
     public GameObject GetPooledObject(string tag)

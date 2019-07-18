@@ -53,7 +53,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObjects: []
-  itemToPool: []
+  itemToPool:
+  - objectToPool: {fileID: 1490587742177016, guid: 6b283d8e3ce098c4898acde20ba9f687,
+      type: 2}
+    amountToPool: 3
+    shouldExpand: 1
 --- !u!114 &114685334667390694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -65,4 +69,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14650cfa213b2e6488baebda8071252e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  live: 1
+  live: 2
+  obstacle: {fileID: 114426212626292460, guid: 6b283d8e3ce098c4898acde20ba9f687, type: 2}

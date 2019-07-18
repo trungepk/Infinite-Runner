@@ -23,9 +23,10 @@ GameObject:
   - component: {fileID: 65783149032405068}
   - component: {fileID: 23245094776353772}
   - component: {fileID: 114457774291463066}
+  - component: {fileID: 114426212626292460}
   m_Layer: 0
   m_Name: Obstacle
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,11 +92,24 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1490587742177016}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.5, y: 0.6, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114426212626292460
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1490587742177016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52469b2a6a70e1a459df2a9eca517d5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 114041494484194358, guid: 3b4268e3c2209464b99922fc1b64e2c3, type: 2}
+  damage: 2
 --- !u!114 &114457774291463066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -107,3 +121,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a523eaa3e65a70409dde0aac054234b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  path: {fileID: 114038123986415624, guid: a55f6da7b1566ea4a83017c3abd2fa8b, type: 2}

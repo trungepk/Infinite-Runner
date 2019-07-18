@@ -17,7 +17,13 @@ public class Obstacle : MonoBehaviour {
     {
         if (other.tag == "Player")
         {
+            gameObject.SetActive(false);
             GameSession.instance.ProcessPlayerDead();
         }
+    }
+
+    private void OnBecameInvisible()
+    {
+        gameObject.SetActive(false);
     }
 }

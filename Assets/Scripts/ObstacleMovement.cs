@@ -8,7 +8,7 @@ public class ObstacleMovement : MonoBehaviour {
 
     private Vector3 playerDir;
 
-    private void Start()
+    private void OnEnable()
     {
         speed = path.ScrollingSpeed;
         playerDir = Vector3.back;
