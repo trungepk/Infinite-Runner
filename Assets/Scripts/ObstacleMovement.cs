@@ -15,6 +15,6 @@ public class ObstacleMovement : MonoBehaviour {
     }
     private void Update()
     {
-        transform.position += playerDir * Time.deltaTime;
+        transform.position += playerDir * Time.deltaTime * speed;
     }
 }

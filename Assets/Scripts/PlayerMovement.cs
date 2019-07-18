@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-    [SerializeField] float sidewaySpeed = 5f;
-    [SerializeField] private float timeDelta = 0.05f;
     private bool canMove = true;
 
     private Animator anim;
@@ -26,7 +24,6 @@ public class PlayerMovement : MonoBehaviour {
     private void UpdateAnimClipLength()
     {
         AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
-        Debug.Log(clips[0]);
 
         foreach (AnimationClip clip in clips)
         {
@@ -37,7 +34,6 @@ public class PlayerMovement : MonoBehaviour {
                     break;
                 case "Shrinking":
                     shrinkingTime = clip.length;
-                    Debug.Log(shrinkingTime);
                     break;
                 case "Swelling":
                     swellingTime = clip.length;
@@ -57,18 +53,17 @@ public class PlayerMovement : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.RightArrow) && canMove)
         {
-            canMove = false;
             StartCoroutine(GoRight(perc));
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow) && canMove)
         {
-            canMove = false;
             StartCoroutine(GoLeft(perc));
         }
     }
 
     private IEnumerator GoLeft(float perc)
     {
+        canMove = false;
         anim.SetTrigger("Shrink");
         yield return new WaitForSeconds(shrinkingTime + 0.1f);
         Vector3 left = transform.position + Vector3.left;
@@ -80,6 +75,7 @@ public class PlayerMovement : MonoBehaviour {
 
     private IEnumerator GoRight(float perc)
     {
+        canMove = false;
         anim.SetTrigger("Shrink");
         yield return new WaitForSeconds(shrinkingTime + 0.1f);
         Vector3 right = transform.position + Vector3.right;
