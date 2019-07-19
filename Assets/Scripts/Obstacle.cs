@@ -7,10 +7,6 @@ public class Obstacle : MonoBehaviour {
     [SerializeField] private Player player;
     [SerializeField] private int damage = 1;
 
-    private void Start()
-    {
-    }
-
     public int Damage { get { return damage; } }
 
     private void OnTriggerEnter(Collider other)

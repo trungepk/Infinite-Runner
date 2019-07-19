@@ -16,6 +16,7 @@ public class Player : MonoBehaviour {
         if (GameSession.instance.live <= 0)
         {
             isDead = true;
+            //GameSession.instance.ProcessPlayerDead();
         }
     }
 }
