@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Obstacle
   - Coin
+  - Path
+  - Cliff
   layers:
   - Default
   - TransparentFX

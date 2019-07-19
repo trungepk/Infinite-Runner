@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             StartCoroutine(GoLeft(perc));
         }
+        transform.position = new Vector3((float)Math.Round(transform.position.x), transform.position.y, transform.position.z);
     }
 
     private IEnumerator GoLeft(float perc)

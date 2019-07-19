@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23142850762316876}
   - component: {fileID: 114910868092049048}
   - component: {fileID: 114266263809106776}
+  - component: {fileID: 114371545441680472}
   m_Layer: 0
   m_Name: Coin
   m_TagString: Coin
@@ -98,6 +99,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 114041494484194358, guid: 3b4268e3c2209464b99922fc1b64e2c3, type: 2}
   point: 1
+--- !u!114 &114371545441680472
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1691502178872344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec04bcd13eea7ed40b0952d0ece1022b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinSpeed: 60
 --- !u!114 &114910868092049048
 MonoBehaviour:
   m_ObjectHideFlags: 1

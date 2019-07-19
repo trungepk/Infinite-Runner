@@ -154,6 +154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 54786519094817192}
-  jumpVelocity: 5
+  jumpVelocity: 6
   fallMultiplier: 2.5
   lowJumpMultiplier: 2

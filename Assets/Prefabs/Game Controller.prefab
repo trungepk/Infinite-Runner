@@ -62,6 +62,14 @@ MonoBehaviour:
       type: 2}
     amountToPool: 10
     shouldExpand: 1
+  - objectToPool: {fileID: 1035340737570832, guid: a55f6da7b1566ea4a83017c3abd2fa8b,
+      type: 2}
+    amountToPool: 2
+    shouldExpand: 1
+  - objectToPool: {fileID: 1513510293157126, guid: b613f294051cb6a46b74c97d15b28a2c,
+      type: 2}
+    amountToPool: 1
+    shouldExpand: 1
 --- !u!114 &114685334667390694
 MonoBehaviour:
   m_ObjectHideFlags: 1
