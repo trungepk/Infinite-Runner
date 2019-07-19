@@ -4,19 +4,32 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
-    private bool isDead;
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float jumpVelocity = 5f;
+    [SerializeField] private float fallMultiplier = 2.5f;
+    [SerializeField] private float lowJumpMultiplier = 2;
 
-    private void Update()
+    private void Start()
     {
-        Die();
+        rb = GetComponent<Rigidbody>();
+    }
+    private void FixedUpdate()
+    {
+        Jump();
     }
 
-    private void Die()
+    private void Jump()
     {
-        if (GameSession.instance.live <= 0)
+        if (Input.GetButtonDown("Jump") && rb.velocity.y == 0)
         {
-            isDead = true;
-            //GameSession.instance.ProcessPlayerDead();
+            rb.velocity = Vector3.up * jumpVelocity;
+            if(rb.velocity.y < 0)
+            {
+                rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }else if(rb.velocity.y>0 && !Input.GetButton("Jump"))
+            {
+                rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
         }
     }
 }
