@@ -9,6 +9,13 @@ public class PickableThing : MonoBehaviour {
 
     public int Point { get { return point; } }
 
+    private void OnEnable()
+    {
+        if(tag == "Coin")
+        {
+            transform.Rotate(90, 0, 0); 
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")

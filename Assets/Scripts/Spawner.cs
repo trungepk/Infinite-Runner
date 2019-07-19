@@ -11,6 +11,8 @@ public class Spawner : MonoBehaviour {
     private float coinSpawnRate;
     [SerializeField] private float minCoinSpawnRate = 10f;
     [SerializeField] private float maxCoinSpawnRate = 50f;
+    [SerializeField] private int coinsEachLine = 5;
+    [SerializeField] [Range(.2f, .7f)] private float distanceBetweenCoins = .5f;
     
 
 	void Start () {
@@ -53,20 +55,29 @@ public class Spawner : MonoBehaviour {
     {
         if (coinSpawnRate <= 0)
         {
-            SpawnCoin();
+            StartCoroutine(SpawnCoinLine());
             coinSpawnRate = Random.Range(minCoinSpawnRate, maxCoinSpawnRate);
         }
         coinSpawnRate -= Time.deltaTime;
     }
 
+    private IEnumerator SpawnCoinLine()
+    {
+        for(var i = 0; i < coinsEachLine; i++)
+        {
+            SpawnCoin();
+            yield return new WaitForSeconds(distanceBetweenCoins);
+        }
+    }
+
     private void SpawnCoin()
     {
-        GameObject obstacle = ObjectPooler.SharedInstance.GetPooledObject("Coin");
-        if (obstacle)
+        GameObject coin = ObjectPooler.SharedInstance.GetPooledObject("Coin");
+        if (coin)
         {
-            obstacle.transform.position = transform.position;
-            obstacle.transform.rotation = Quaternion.identity;
-            obstacle.SetActive(true);
+            coin.transform.position = transform.position;
+            coin.transform.rotation = Quaternion.identity;
+            coin.SetActive(true);
         }
     }
 }
