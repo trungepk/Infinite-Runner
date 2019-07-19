@@ -12,13 +12,20 @@ public class PlayerMovement : MonoBehaviour {
     [System.NonSerialized] public float shrinkingTime;
     [System.NonSerialized] public float swellingTime;
 
-    float lerpTime = 1f;
-    float currentLerpTime;
+    private float lerpTime = 1f;
+    private float currentLerpTime;
+
+    [SerializeField] private Rigidbody rb;
+    [SerializeField] private float jumpVelocity = 5f;
+    [SerializeField] private float fallMultiplier = 2.5f;
+    [SerializeField] private float lowJumpMultiplier = 2;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         UpdateAnimClipLength();
+
     }
 
     private void UpdateAnimClipLength()
@@ -41,8 +48,33 @@ public class PlayerMovement : MonoBehaviour {
             }
         }
     }
+    private void FixedUpdate()
+    {
+        Jump();
+    }
+
+    private void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && rb.velocity.y == 0)
+        {
+            rb.velocity = Vector3.up * jumpVelocity;
+            if (rb.velocity.y < 0)
+            {
+                rb.velocity += Vector3.up * Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+            }
+            else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+            {
+                rb.velocity += Vector3.up * Physics.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+            }
+        }
+    }
 
     void Update()
+    {
+        MoveSideWay();
+    }
+
+    private void MoveSideWay()
     {
         currentLerpTime += Time.deltaTime;
         if (currentLerpTime > lerpTime)

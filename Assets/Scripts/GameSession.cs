@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class GameSession : MonoBehaviour {
     public static GameSession instance;
     public int live = 3;
+    public int point;
     [SerializeField] private Obstacle obstacle;
 
     [SerializeField] GameObject loseImage;
@@ -34,9 +35,6 @@ public class GameSession : MonoBehaviour {
                 StartCoroutine(Restart());
             }
         }
-        else
-        {
-        }
     }
 
 
@@ -55,5 +53,10 @@ public class GameSession : MonoBehaviour {
         Time.timeScale = 1f;
         Time.fixedDeltaTime *= slowness;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void AddPoint(int point)
+    {
+        this.point += point;
     }
 }

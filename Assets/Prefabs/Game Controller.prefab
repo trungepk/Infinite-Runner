@@ -58,6 +58,10 @@ MonoBehaviour:
       type: 2}
     amountToPool: 3
     shouldExpand: 1
+  - objectToPool: {fileID: 1691502178872344, guid: a14ab0d950646c344844c5c54e3d7e30,
+      type: 2}
+    amountToPool: 10
+    shouldExpand: 1
 --- !u!114 &114685334667390694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -70,6 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   live: 2
+  point: 0
   obstacle: {fileID: 114426212626292460, guid: 6b283d8e3ce098c4898acde20ba9f687, type: 2}
   loseImage: {fileID: 0}
   loseSFX: {fileID: 8300000, guid: fd02a6c8542c8af4dbcc2418573e9796, type: 3}

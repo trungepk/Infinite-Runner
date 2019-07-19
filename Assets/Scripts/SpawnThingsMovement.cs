@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObstacleMovement : MonoBehaviour {
+public class SpawnThingsMovement : MonoBehaviour {
     [SerializeField] private ScrollingPath path;
     private float speed;
 
