@@ -51,11 +51,13 @@ public class PlayerMovement : MonoBehaviour {
     private void FixedUpdate()
     {
         Jump();
+        Debug.Log(rb.velocity);
     }
 
     private void Jump()
     {
-        if (Input.GetButtonDown("Jump") && rb.velocity.y == 0)
+        bool isGrounded = rb.velocity.y <= 0 && rb.velocity.y >= -0.9 && transform.position.y < 2;
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = Vector3.up * jumpVelocity;
             if (rb.velocity.y < 0)

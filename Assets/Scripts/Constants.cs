@@ -7,6 +7,7 @@ public static class Constants {
     public static readonly string PlayerTag = "Player";
     public static readonly string PathTag = "Path";
     public static readonly string CliffTag = "Cliff";
+    public static readonly string LavaTag = "Lava";
     public static readonly string CoinTag = "Coin";
     public static readonly string ObstacleTag = "Obstacle";
     //Scenes

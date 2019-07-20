@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Path
   - Cliff
+  - Lava
   layers:
   - Default
   - TransparentFX

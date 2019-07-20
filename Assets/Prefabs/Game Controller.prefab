@@ -70,6 +70,10 @@ MonoBehaviour:
       type: 2}
     amountToPool: 1
     shouldExpand: 1
+  - objectToPool: {fileID: 1252013042178742, guid: 77c811b4ae8792042835b41ad8b4178f,
+      type: 2}
+    amountToPool: 0
+    shouldExpand: 1
 --- !u!114 &114685334667390694
 MonoBehaviour:
   m_ObjectHideFlags: 1
