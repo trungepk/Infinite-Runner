@@ -8,6 +8,7 @@ public class GameSession : MonoBehaviour {
     public static GameSession instance;
     public int live = 3;
     public int point;
+    [SerializeField] private int pointTillAddLive = 50;
     [SerializeField] private Obstacle obstacle;
 
     [SerializeField] GameObject loseImage;
@@ -60,6 +61,8 @@ public class GameSession : MonoBehaviour {
 
     public void AddPoint(int point)
     {
+        int progress = this.point % pointTillAddLive; // Current point until add more live
         this.point += point;
+        if (progress + point >= pointTillAddLive) { live++; }
     }
 }
