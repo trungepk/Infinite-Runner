@@ -27,13 +27,13 @@ public class ScrollingPath : MonoBehaviour {
     private void Repositioning()
     {
         Vector3 pathOffset = new Vector3(0, 0, pathLength * 2);
-        string[] typesOfPath = { "Path", "Cliff" };
+        string[] typesOfPath = { Constants.PathTag, Constants.CliffTag };
         int rnd = Random.Range(0, typesOfPath.Length);
-        if (GameObject.FindGameObjectsWithTag("Cliff").Length > 0) { rnd = 0; } // NOT spawn cliff if there is already one actives
+        if (GameObject.FindGameObjectsWithTag(Constants.CliffTag).Length > 0) { rnd = 0; } // NOT spawn cliff if there is already one actives
         GameObject path = ObjectPooler.SharedInstance.GetPooledObject(typesOfPath[rnd]);
         if (path)
         {
-            if (path.tag == "Cliff")
+            if (path.tag == Constants.CliffTag)
             {
                 pathOffset = CaculateCliffOffset(pathOffset);
             }

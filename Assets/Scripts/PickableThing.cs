@@ -11,14 +11,14 @@ public class PickableThing : MonoBehaviour {
 
     private void OnEnable()
     {
-        if(tag == "Coin")
+        if(tag == Constants.CoinTag)
         {
             transform.Rotate(90, 0, 0); 
         }
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.tag == Constants.PlayerTag)
         {
             GameSession.instance.AddPoint(point);
             gameObject.SetActive(false);

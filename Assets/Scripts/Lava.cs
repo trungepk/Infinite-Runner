@@ -6,7 +6,7 @@ public class Lava : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if(other.tag == Constants.PlayerTag)
         {
             Destroy(other);
             GameSession.instance.live = 0;

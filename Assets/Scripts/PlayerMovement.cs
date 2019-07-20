@@ -97,11 +97,11 @@ public class PlayerMovement : MonoBehaviour {
     private IEnumerator GoLeft(float perc)
     {
         canMove = false;
-        anim.SetTrigger("Shrink");
+        anim.SetTrigger(Constants.ShrinkAnim);
         yield return new WaitForSeconds(shrinkingTime + 0.1f);
         Vector3 left = transform.position + Vector3.left;
         transform.position = Vector3.Lerp(transform.position, left, perc);
-        anim.SetTrigger("Swell");
+        anim.SetTrigger(Constants.SwellAnim);
         yield return new WaitForSeconds(swellingTime);
         canMove = true;
     }
@@ -109,11 +109,11 @@ public class PlayerMovement : MonoBehaviour {
     private IEnumerator GoRight(float perc)
     {
         canMove = false;
-        anim.SetTrigger("Shrink");
+        anim.SetTrigger(Constants.ShrinkAnim);
         yield return new WaitForSeconds(shrinkingTime + 0.1f);
         Vector3 right = transform.position + Vector3.right;
         transform.position = Vector3.Lerp(transform.position, right, perc);
-        anim.SetTrigger("Swell");
+        anim.SetTrigger(Constants.SwellAnim);
         yield return new WaitForSeconds(swellingTime);
         canMove = true;
     }

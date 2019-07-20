@@ -11,12 +11,12 @@ public class LevelManager : MonoBehaviour {
 	
 	public void BackToMainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene(Constants.MainMenu);
     }
 
     public void LoadStartScene()
     {
-        SceneManager.LoadScene("Start");
+        SceneManager.LoadScene(Constants.Start);
     }
 
     public void Quit()

@@ -42,7 +42,7 @@ public class Spawner : MonoBehaviour {
 
     private void SpawnObstacle()
     {
-        GameObject obstacle = ObjectPooler.SharedInstance.GetPooledObject("Obstacle");
+        GameObject obstacle = ObjectPooler.SharedInstance.GetPooledObject(Constants.ObstacleTag);
         if (obstacle)
         {
             obstacle.transform.position = transform.position;
@@ -72,7 +72,7 @@ public class Spawner : MonoBehaviour {
 
     private void SpawnCoin()
     {
-        GameObject coin = ObjectPooler.SharedInstance.GetPooledObject("Coin");
+        GameObject coin = ObjectPooler.SharedInstance.GetPooledObject(Constants.CoinTag);
         if (coin)
         {
             coin.transform.position = transform.position;
