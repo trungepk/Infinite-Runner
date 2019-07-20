@@ -30,10 +30,11 @@ public class GameSession : MonoBehaviour {
         if (live >= 1)
         {
             TakeDamage(obstacle.Damage);
-            if (live <= 0)
-            {
-                StartCoroutine(Restart());
-            }
+        }
+        if (live <= 0)
+        {
+            StartCoroutine(Restart());
+            return;
         }
     }
 
