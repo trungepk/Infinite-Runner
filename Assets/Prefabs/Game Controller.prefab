@@ -87,3 +87,5 @@ MonoBehaviour:
   loseImage: {fileID: 0}
   loseSFX: {fileID: 8300000, guid: fd02a6c8542c8af4dbcc2418573e9796, type: 3}
   slowness: 10
+  levelManager: {fileID: 114534527616373152, guid: 8cd519b30103a7847b8f7d42a04b2cd4,
+    type: 2}

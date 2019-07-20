@@ -13,6 +13,8 @@ public class GameSession : MonoBehaviour {
     [SerializeField] GameObject loseImage;
     [SerializeField] AudioClip loseSFX;
     [SerializeField] float slowness = 10f;
+
+    [SerializeField] private LevelManager levelManager;
     private void Awake()
     {
         if (instance == null)
@@ -53,7 +55,7 @@ public class GameSession : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         Time.timeScale = 1f;
         Time.fixedDeltaTime *= slowness;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        levelManager.BackToMainMenu();
     }
 
     public void AddPoint(int point)

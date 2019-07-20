@@ -17,7 +17,7 @@ public class ScrollingPath : MonoBehaviour {
 	
 	void Update () {
         transform.position -= new Vector3(0, 0, 1) * Time.deltaTime * ScrollingSpeed;
-        if(transform.position.z < -pathLength)
+        if (transform.position.z < -pathLength)
         {
             Repositioning();
             gameObject.SetActive(false);
@@ -29,20 +29,26 @@ public class ScrollingPath : MonoBehaviour {
         Vector3 pathOffset = new Vector3(0, 0, pathLength * 2);
         string[] typesOfPath = { "Path", "Cliff" };
         int rnd = Random.Range(0, typesOfPath.Length);
-        if (GameObject.FindGameObjectsWithTag("Cliff").Length > 0) { rnd = 0; }
+        if (GameObject.FindGameObjectsWithTag("Cliff").Length > 0) { rnd = 0; } // NOT spawn cliff if there is already one actives
         GameObject path = ObjectPooler.SharedInstance.GetPooledObject(typesOfPath[rnd]);
         if (path)
         {
-            if(path.tag == "Cliff")
+            if (path.tag == "Cliff")
             {
-                float[] offset = { -1.5f, 0, 1.5f };
-                int rndOffset = Random.Range(0, offset.Length);
-                pathOffset += new Vector3(offset[rndOffset], 0, 0);
+                pathOffset = CaculateCliffOffset(pathOffset);
             }
-            
-            path.transform.position = Vector3.Scale(transform.position, new Vector3(0,1,1)) + pathOffset;
+
+            path.transform.position = Vector3.Scale(transform.position, new Vector3(0, 1, 1)) + pathOffset;
             path.transform.rotation = Quaternion.identity;
             path.SetActive(true);
         }
+    }
+
+    private static Vector3 CaculateCliffOffset(Vector3 pathOffset)
+    {
+        float[] offset = { -1.5f, 0, 1.5f };
+        int rndOffset = Random.Range(0, offset.Length);
+        pathOffset += new Vector3(offset[rndOffset], 0, 0);
+        return pathOffset;
     }
 }
