@@ -18,6 +18,16 @@ public class Obstacle : MonoBehaviour {
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag == Constants.PlayerTag)
+        {
+            Hit(damage);
+            gameObject.SetActive(false);
+            GameSession.instance.ProcessPlayerDead();
+        }
+    }
+
     private void OnBecameInvisible()
     {
         gameObject.SetActive(false);
