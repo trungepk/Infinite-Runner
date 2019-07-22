@@ -7,6 +7,7 @@ public class UIDisplay : MonoBehaviour {
     [SerializeField] private GameSession gameSession;
     [SerializeField] private Text healthText;
     [SerializeField] private Text pointText;
+    [SerializeField] private Text endGamePoint;
 
 	void Start () {
 		
@@ -16,5 +17,6 @@ public class UIDisplay : MonoBehaviour {
 	void Update () {
         healthText.text = gameSession.live.ToString();
         pointText.text = gameSession.point.ToString();
-	}
+        endGamePoint.text = gameSession.point.ToString();
+    }
 }

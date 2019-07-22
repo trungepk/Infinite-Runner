@@ -12,10 +12,12 @@ public class GameSession : MonoBehaviour {
     [SerializeField] private Obstacle obstacle;
 
     [SerializeField] GameObject loseImage;
+    [SerializeField] GameObject retryCanvas;
     [SerializeField] AudioClip loseSFX;
     [SerializeField] float slowness = 10f;
 
     [SerializeField] private LevelManager levelManager;
+    [SerializeField] private GameObject player;
     private void Awake()
     {
         if (instance == null)
@@ -37,6 +39,7 @@ public class GameSession : MonoBehaviour {
         if (live <= 0)
         {
             StartCoroutine(Restart());
+            Destroy(player);
             return;
         }
     }
@@ -56,7 +59,9 @@ public class GameSession : MonoBehaviour {
         yield return new WaitForSeconds(1f);
         Time.timeScale = 1f;
         Time.fixedDeltaTime *= slowness;
-        levelManager.BackToMainMenu();
+        loseImage.SetActive(false);
+        retryCanvas.SetActive(true);
+        //levelManager.BackToMainMenu();
     }
 
     public void AddPoint(int point)

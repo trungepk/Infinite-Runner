@@ -54,3 +54,4 @@ MonoBehaviour:
   gameSession: {fileID: 0}
   healthText: {fileID: 0}
   pointText: {fileID: 0}
+  endGamePoint: {fileID: 0}

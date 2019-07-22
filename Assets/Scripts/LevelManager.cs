@@ -12,11 +12,18 @@ public class LevelManager : MonoBehaviour {
 	public void BackToMainMenu()
     {
         SceneManager.LoadScene(Constants.MainMenu);
+        Time.timeScale = 1;
     }
 
     public void LoadStartScene()
     {
         SceneManager.LoadScene(Constants.Start);
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
     }
 
     public void Quit()
@@ -26,7 +33,6 @@ public class LevelManager : MonoBehaviour {
 
     public void Pause()
     {
-        Debug.Log("pause");
         Time.timeScale = !isPause ? 0 : 1;
         isPause = !isPause;
     }
