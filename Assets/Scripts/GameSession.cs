@@ -61,7 +61,7 @@ public class GameSession : MonoBehaviour {
 
     public void AddPoint(int point)
     {
-        int progress = this.point % pointTillAddLive; // Current point until add more live
+        int progress = (int)(this.point % pointTillAddLive); // Current point until add more live
         this.point += point;
         if (progress + point >= pointTillAddLive) { live++; }
     }

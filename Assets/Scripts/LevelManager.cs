@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
-
+    private bool isPause;
 	void Start () {
 		
 	}
@@ -22,5 +22,12 @@ public class LevelManager : MonoBehaviour {
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void Pause()
+    {
+        Debug.Log("pause");
+        Time.timeScale = !isPause ? 0 : 1;
+        isPause = !isPause;
     }
 }
