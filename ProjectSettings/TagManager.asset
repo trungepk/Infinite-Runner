@@ -9,6 +9,7 @@ TagManager:
   - Path
   - Cliff
   - Lava
+  - Tall Obstacle
   layers:
   - Default
   - TransparentFX

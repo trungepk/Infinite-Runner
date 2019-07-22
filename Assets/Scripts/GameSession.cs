@@ -32,10 +32,10 @@ public class GameSession : MonoBehaviour {
 
     public void ProcessPlayerDead()
     {
-        if (live >= 1)
-        {
-            TakeDamage(obstacle.Damage);
-        }
+        //if (live >= 1)
+        //{
+        //    TakeDamage(obstacle.Damage);
+        //}
         if (live <= 0)
         {
             StartCoroutine(Restart());
@@ -45,10 +45,10 @@ public class GameSession : MonoBehaviour {
     }
 
 
-    private void TakeDamage(int dmg)
-    {
-        live -= dmg;
-    }
+    //private void TakeDamage(int dmg)
+    //{
+    //    live -= dmg;
+    //}
 
     private IEnumerator Restart()
     {
@@ -61,12 +61,11 @@ public class GameSession : MonoBehaviour {
         Time.fixedDeltaTime *= slowness;
         loseImage.SetActive(false);
         retryCanvas.SetActive(true);
-        //levelManager.BackToMainMenu();
     }
 
     public void AddPoint(int point)
     {
-        int progress = (int)(this.point % pointTillAddLive); // Current point until add more live
+        int progress = this.point % pointTillAddLive; // Current point until add more live
         this.point += point;
         if (progress + point >= pointTillAddLive) { live++; }
     }

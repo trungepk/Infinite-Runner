@@ -10,6 +10,7 @@ public static class Constants {
     public static readonly string LavaTag = "Lava";
     public static readonly string CoinTag = "Coin";
     public static readonly string ObstacleTag = "Obstacle";
+    public static readonly string TallObstacleTag = "Tall Obstacle";
     //Scenes
     public static readonly string MainMenu = "Main Menu";
     public static readonly string Start = "Start";
