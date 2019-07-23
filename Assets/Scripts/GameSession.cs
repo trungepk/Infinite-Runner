@@ -13,6 +13,7 @@ public class GameSession : MonoBehaviour {
 
     [SerializeField] GameObject loseImage;
     [SerializeField] GameObject retryCanvas;
+    [SerializeField] GameObject playerStatusCanvas;
     [SerializeField] AudioClip loseSFX;
     [SerializeField] float slowness = 10f;
 
@@ -32,25 +33,19 @@ public class GameSession : MonoBehaviour {
 
     public void ProcessPlayerDead()
     {
-        //if (live >= 1)
-        //{
-        //    TakeDamage(obstacle.Damage);
-        //}
         if (live <= 0)
         {
-            StartCoroutine(Restart());
+            StartCoroutine(Lose());
             Destroy(player);
+            if(point > PlayerPrefs.GetInt(Constants.BestScore, 0))
+            {
+                PlayerPrefs.SetInt(Constants.BestScore, point);
+            }
             return;
         }
     }
 
-
-    //private void TakeDamage(int dmg)
-    //{
-    //    live -= dmg;
-    //}
-
-    private IEnumerator Restart()
+    private IEnumerator Lose()
     {
         Time.timeScale = 1f / slowness;
         Time.fixedDeltaTime /= slowness;
@@ -60,6 +55,7 @@ public class GameSession : MonoBehaviour {
         Time.timeScale = 1f;
         Time.fixedDeltaTime *= slowness;
         loseImage.SetActive(false);
+        playerStatusCanvas.SetActive(false);
         retryCanvas.SetActive(true);
     }
 

@@ -19,4 +19,7 @@ public static class Constants {
     public static readonly string IdleAnim = "Idle";
     public static readonly string ShrinkAnim = "Shrink";
     public static readonly string SwellAnim = "Swell";
+    //PlayerPrefs keys
+    public static readonly string BestScore = "Best score";
+
 }
