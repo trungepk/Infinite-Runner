@@ -5,10 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
     private bool isPause;
-	void Start () {
-		
-	}
-	
+
 	public void BackToMainMenu()
     {
         SceneManager.LoadScene(Constants.MainMenu);
