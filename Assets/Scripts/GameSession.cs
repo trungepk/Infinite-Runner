@@ -65,4 +65,9 @@ public class GameSession : MonoBehaviour {
         this.point += point;
         if (progress + point >= pointTillAddLive) { live++; }
     }
+
+    public void ResetScore()
+    {
+        PlayerPrefs.DeleteKey(Constants.BestScore);
+    }
 }
