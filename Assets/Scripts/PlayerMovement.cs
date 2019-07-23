@@ -7,11 +7,6 @@ public class PlayerMovement : MonoBehaviour {
 
     private bool canMove = true;
 
-    private Animator anim;
-    //[System.NonSerialized] public float idleTime;
-    //[System.NonSerialized] public float shrinkingTime;
-    //[System.NonSerialized] public float swellingTime;
-
     private float lerpTime = 1f;
     private float currentLerpTime;
     private Vector3 shrinkAndSwellScale;
@@ -27,32 +22,11 @@ public class PlayerMovement : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        anim = GetComponent<Animator>();
         //UpdateAnimClipLength();
         originalScale = transform.localScale;
         shrinkAndSwellScale = originalScale;
     }
 
-    //private void UpdateAnimClipLength()
-    //{
-    //    AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
-
-    //    foreach (AnimationClip clip in clips)
-    //    {
-    //        switch (clip.name)
-    //        {
-    //            case "Idle":
-    //                idleTime = clip.length;
-    //                break;
-    //            case "Shrinking":
-    //                shrinkingTime = clip.length;
-    //                break;
-    //            case "Swelling":
-    //                swellingTime = clip.length;
-    //                break;
-    //        }
-    //    }
-    //}
     private void FixedUpdate()
     {
         Jump();
