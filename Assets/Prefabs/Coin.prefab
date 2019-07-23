@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 114041494484194358, guid: 3b4268e3c2209464b99922fc1b64e2c3, type: 2}
   point: 1
+  coinPickUpSFX: {fileID: 8300000, guid: 3df703416c4669449a6c27f24b65e603, type: 3}
 --- !u!114 &114371545441680472
 MonoBehaviour:
   m_ObjectHideFlags: 1

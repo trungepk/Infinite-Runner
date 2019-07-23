@@ -6,8 +6,7 @@ public class Obstacle : MonoBehaviour {
     [SerializeField] private Player player;
     [SerializeField] private int damage = 1;
 
-    //public int Damage { get { return damage; } }
-
+    [SerializeField] private AudioClip collideSFX;
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == Constants.PlayerTag)
@@ -36,5 +35,6 @@ public class Obstacle : MonoBehaviour {
     private void Hit(int dmg)
     {
         GameSession.instance.live -= dmg;
+        AudioSource.PlayClipAtPoint(collideSFX, Camera.main.transform.position);
     }
 }

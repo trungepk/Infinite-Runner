@@ -465,10 +465,20 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114544665507999748, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1083138356}
+    - target: {fileID: 114911572036810532, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1083138356}
     - target: {fileID: 224428710689960474, guid: 78058798ce0d6484997210089739990e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -0.000015258789
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78058798ce0d6484997210089739990e, type: 2}
@@ -557,6 +567,12 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8cd519b30103a7847b8f7d42a04b2cd4, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1083138356 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114534527616373152, guid: 8cd519b30103a7847b8f7d42a04b2cd4,
+    type: 2}
+  m_PrefabInternal: {fileID: 1083138355}
+  m_Script: {fileID: 11500000, guid: 3b1fb620073564d44b14429a1c174d5f, type: 3}
 --- !u!1001 &2088317420
 Prefab:
   m_ObjectHideFlags: 0

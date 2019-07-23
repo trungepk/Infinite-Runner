@@ -7,6 +7,8 @@ public class PickableThing : MonoBehaviour {
     [SerializeField] private Player player;
     [SerializeField] private int point = 1;
 
+    [SerializeField] private AudioClip coinPickUpSFX;
+
     public int Point { get { return point; } }
 
     private void OnEnable()
@@ -21,6 +23,7 @@ public class PickableThing : MonoBehaviour {
         if (other.tag == Constants.PlayerTag)
         {
             GameSession.instance.AddPoint(point);
+            AudioSource.PlayClipAtPoint(coinPickUpSFX, Camera.main.transform.position);
             gameObject.SetActive(false);
         }
     }
