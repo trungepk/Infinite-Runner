@@ -325,11 +325,6 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 341093034}
-    - target: {fileID: 114685334667390694, guid: 0604ee71020da4545b78240b825f1327,
-        type: 2}
-      propertyPath: live
-      value: 99
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0604ee71020da4545b78240b825f1327, type: 2}
   m_IsPrefabParent: 0
@@ -338,12 +333,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1168405136284268, guid: 3b4268e3c2209464b99922fc1b64e2c3,
     type: 2}
   m_PrefabInternal: {fileID: 1765959607}
---- !u!114 &341093035 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114041494484194358, guid: 3b4268e3c2209464b99922fc1b64e2c3,
-    type: 2}
-  m_PrefabInternal: {fileID: 1765959607}
-  m_Script: {fileID: 11500000, guid: 9d3955036debf874380db61774b03959, type: 3}
 --- !u!1 &438076883
 GameObject:
   m_ObjectHideFlags: 0
@@ -552,6 +541,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 691647593}
+  - component: {fileID: 691647594}
   m_Layer: 0
   m_Name: Laser Spawn Point
   m_TagString: Untagged
@@ -570,8 +560,26 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &691647594
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 691647592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54869a3b0e38e654fb030b167eb09866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minObstacleSpawnRate: 10
+  maxObstacleSpawnRate: 50
+  isSpawnCoin: 0
+  minCoinSpawnRate: 10
+  maxCoinSpawnRate: 50
+  coinsEachLine: 5
+  distanceBetweenCoins: 0.5
 --- !u!1001 &700883584
 Prefab:
   m_ObjectHideFlags: 0
@@ -741,12 +749,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd074a21ff2ecbe4a885263abf4706f0, type: 2}
   m_IsPrefabParent: 0
---- !u!114 &736558168 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114038123986415624, guid: a55f6da7b1566ea4a83017c3abd2fa8b,
-    type: 2}
-  m_PrefabInternal: {fileID: 1235401141}
-  m_Script: {fileID: 11500000, guid: a9aeb650d8cc22c4d9472b74bc373351, type: 3}
 --- !u!114 &767720646 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114926413603854640, guid: 5905c0e47ede8a14a81cbf56e0e0692b,
@@ -1729,73 +1731,6 @@ Prefab:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bd074a21ff2ecbe4a885263abf4706f0, type: 2}
-  m_IsPrefabParent: 0
---- !u!1001 &1858824566
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4898517158722366, guid: 1a6463f031fa2ea41b660578d4493865, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4898517158722366, guid: 1a6463f031fa2ea41b660578d4493865, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4898517158722366, guid: 1a6463f031fa2ea41b660578d4493865, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 4898517158722366, guid: 1a6463f031fa2ea41b660578d4493865, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4898517158722366, guid: 1a6463f031fa2ea41b660578d4493865, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4898517158722366, guid: 1a6463f031fa2ea41b660578d4493865, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4898517158722366, guid: 1a6463f031fa2ea41b660578d4493865, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4898517158722366, guid: 1a6463f031fa2ea41b660578d4493865, type: 2}
-      propertyPath: m_RootOrder
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 114004850573349766, guid: 1a6463f031fa2ea41b660578d4493865,
-        type: 2}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 341093035}
-    - target: {fileID: 114285621610444260, guid: 1a6463f031fa2ea41b660578d4493865,
-        type: 2}
-      propertyPath: cam
-      value: 
-      objectReference: {fileID: 30278705}
-    - target: {fileID: 114044656143844612, guid: 1a6463f031fa2ea41b660578d4493865,
-        type: 2}
-      propertyPath: path
-      value: 
-      objectReference: {fileID: 736558168}
-    - target: {fileID: 23150253524877308, guid: 1a6463f031fa2ea41b660578d4493865,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 65894778496952966, guid: 1a6463f031fa2ea41b660578d4493865,
-        type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 1a6463f031fa2ea41b660578d4493865, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1971580967
 GameObject:

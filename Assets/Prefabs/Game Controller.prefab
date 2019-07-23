@@ -78,6 +78,10 @@ MonoBehaviour:
       type: 2}
     amountToPool: 3
     shouldExpand: 1
+  - objectToPool: {fileID: 1937098728232408, guid: 1a6463f031fa2ea41b660578d4493865,
+      type: 2}
+    amountToPool: 1
+    shouldExpand: 1
 --- !u!114 &114685334667390694
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -89,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14650cfa213b2e6488baebda8071252e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  live: 2
+  live: 99
   point: 0
   pointTillAddLive: 50
   obstacle: {fileID: 114426212626292460, guid: 6b283d8e3ce098c4898acde20ba9f687, type: 2}

@@ -58,7 +58,7 @@ GameObject:
   - component: {fileID: 114285621610444260}
   m_Layer: 0
   m_Name: Laser
-  m_TagString: Untagged
+  m_TagString: Laser Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -155,7 +155,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 0.8, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &114004850573349766
 MonoBehaviour:
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a523eaa3e65a70409dde0aac054234b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  path: {fileID: 0}
+  path: {fileID: 114038123986415624, guid: a55f6da7b1566ea4a83017c3abd2fa8b, type: 2}
 --- !u!114 &114285621610444260
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -193,7 +193,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8409a8149a2f98478cbd6cc593d98e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cam: {fileID: 0}
   lr: {fileID: 120389515125213634}
   firePoint: {fileID: 4898517158722366}
 --- !u!120 &120389515125213634
