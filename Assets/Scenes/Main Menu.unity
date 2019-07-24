@@ -465,20 +465,55 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114544665507999748, guid: 78058798ce0d6484997210089739990e,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1083138356}
     - target: {fileID: 114911572036810532, guid: 78058798ce0d6484997210089739990e,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1083138356}
+    - target: {fileID: 114544665507999748, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1083138356}
+    - target: {fileID: 114285385893907748, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_CellSize.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114285385893907748, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_CellSize.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 114285385893907748, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_Spacing.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114285385893907748, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_Spacing.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114285385893907748, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_Constraint
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114307920063833186, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_VerticalFit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224428710689960474, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: -26.572552
+      objectReference: {fileID: 0}
     - target: {fileID: 224428710689960474, guid: 78058798ce0d6484997210089739990e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -0.000015258789
+      value: -0.0000020406942
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78058798ce0d6484997210089739990e, type: 2}
