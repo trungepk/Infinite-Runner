@@ -52,6 +52,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSession: {fileID: 0}
+  player: {fileID: 114041494484194358, guid: 3b4268e3c2209464b99922fc1b64e2c3, type: 2}
   healthText: {fileID: 0}
   pointText: {fileID: 0}
   endGamePoint: {fileID: 0}
+  bestScore: {fileID: 0}

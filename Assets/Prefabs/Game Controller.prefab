@@ -93,7 +93,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14650cfa213b2e6488baebda8071252e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  live: 99
+  live: 2
   point: 0
   pointTillAddLive: 50
   obstacle: {fileID: 114426212626292460, guid: 6b283d8e3ce098c4898acde20ba9f687, type: 2}

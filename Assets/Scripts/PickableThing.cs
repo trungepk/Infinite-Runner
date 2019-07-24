@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PickableThing : MonoBehaviour {
 
-    [SerializeField] private Player player;
     [SerializeField] private int point = 1;
+    [SerializeField] private int moneyValue = 1;
 
     [SerializeField] private AudioClip coinPickUpSFX;
 
@@ -23,6 +23,7 @@ public class PickableThing : MonoBehaviour {
         if (other.tag == Constants.PlayerTag)
         {
             GameSession.instance.AddPoint(point);
+            GameSession.instance.AddMoney(moneyValue);
             AudioSource.PlayClipAtPoint(coinPickUpSFX, Camera.main.transform.position);
             gameObject.SetActive(false);
         }

@@ -13,8 +13,11 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 duckScale;
     private Vector3 originalScale;
 
-    [SerializeField] private float moveSpeed = 5f;
+    [Header("References")]
     [SerializeField] private Rigidbody rb;
+
+    [Header("Properties")]
+    [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpVelocity = 5f;
     [SerializeField] private float fallMultiplier = 2.5f;
     [SerializeField] private float lowJumpMultiplier = 2;
@@ -22,7 +25,6 @@ public class PlayerMovement : MonoBehaviour {
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        //UpdateAnimClipLength();
         originalScale = transform.localScale;
         shrinkAndSwellScale = originalScale;
     }
@@ -75,31 +77,6 @@ public class PlayerMovement : MonoBehaviour {
         transform.position = new Vector3((float)Math.Round(transform.position.x), transform.position.y, transform.position.z);
     }
 
-    //private IEnumerator GoLeft(float perc)
-    //{
-    //    canMove = false;
-    //    anim.SetTrigger(Constants.ShrinkAnim);
-    //    yield return new WaitForSeconds(shrinkingTime + 0.1f);
-    //    Vector3 left = transform.position + Vector3.left;
-    //    transform.position = Vector3.Lerp(transform.position, left, perc);
-    //    anim.SetTrigger(Constants.SwellAnim);
-    //    yield return new WaitForSeconds(swellingTime);
-    //    canMove = true;
-    //}
-
-    //private IEnumerator GoRight(float perc)
-    //{
-    //    canMove = false;
-    //    anim.SetTrigger(Constants.ShrinkAnim);
-    //    yield return new WaitForSeconds(shrinkingTime + 0.1f);
-    //    Vector3 right = transform.position + Vector3.right;
-    //    transform.position = Vector3.Lerp(transform.position, right, perc);
-    //    anim.SetTrigger(Constants.SwellAnim);
-    //    yield return new WaitForSeconds(swellingTime);
-    //    canMove = true;
-    //}
-
-    
     private IEnumerator GoLeft(float perc)
     {
         canMove = false;

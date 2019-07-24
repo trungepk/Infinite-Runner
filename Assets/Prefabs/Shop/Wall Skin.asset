@@ -14,3 +14,4 @@ MonoBehaviour:
   itemName: Wall
   sprite: {fileID: 21300000, guid: 47a68d0583f2c4a46be490946b13c4be, type: 3}
   cost: 200
+  itemDescription: qweqwfqwefwfb

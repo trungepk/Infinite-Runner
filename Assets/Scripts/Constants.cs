@@ -21,5 +21,6 @@ public static class Constants {
     public static readonly string SwellAnim = "Swell";
     //PlayerPrefs keys
     public static readonly string BestScore = "Best score";
+    public static readonly string Money = "Money";
 
 }

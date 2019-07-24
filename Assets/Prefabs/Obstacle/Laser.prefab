@@ -168,7 +168,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52469b2a6a70e1a459df2a9eca517d5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   damage: 2
   collideSFX: {fileID: 8300000, guid: 39820cf3653e7284b90b7ce6a74533de, type: 3}
 --- !u!114 &114044656143844612

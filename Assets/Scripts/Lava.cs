@@ -9,9 +9,9 @@ public class Lava : MonoBehaviour {
     {
         if(other.tag == Constants.PlayerTag)
         {
-            Destroy(other);
             GameSession.instance.live = 0;
             GameSession.instance.ProcessPlayerDead();
+            Destroy(other);
         }
     }
 

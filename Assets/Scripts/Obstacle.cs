@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Obstacle : MonoBehaviour {
-    [SerializeField] private Player player;
     [SerializeField] private int damage = 1;
 
     [SerializeField] private AudioClip collideSFX;

@@ -6,19 +6,22 @@ using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour {
     public static GameSession instance;
-    public int live = 3;
-    public int point;
-    [SerializeField] private int pointTillAddLive = 50;
-    [SerializeField] private Obstacle obstacle;
 
+    [Header("Player status")]
+    public int live = 2;
+    public int point;
+    public int money;
+    [SerializeField] private int pointTillAddLive = 50;
+
+    [Header("References")]
+    [SerializeField] private Obstacle obstacle;
     [SerializeField] GameObject loseImage;
     [SerializeField] GameObject retryCanvas;
     [SerializeField] GameObject playerStatusCanvas;
-    [SerializeField] AudioClip loseSFX;
-    [SerializeField] float slowness = 10f;
-
-    [SerializeField] private LevelManager levelManager;
     [SerializeField] private GameObject player;
+    [SerializeField] AudioClip loseSFX;
+
+    [SerializeField] float slowness = 10f;
     private void Awake()
     {
         if (instance == null)
@@ -69,5 +72,11 @@ public class GameSession : MonoBehaviour {
     public void ResetScore()
     {
         PlayerPrefs.DeleteKey(Constants.BestScore);
+    }
+
+    public void AddMoney(int money)
+    {
+        this.money += money;
+        PlayerPrefs.SetInt(Constants.Money, this.money);
     }
 }
