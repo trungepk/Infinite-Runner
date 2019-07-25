@@ -44,7 +44,6 @@ public class Shop : MonoBehaviour {
         GameObject selectedItemObj = EventSystem.current.currentSelectedGameObject;
         int selectedItemIndex = selectedItemObj.transform.GetSiblingIndex();
         ShopManager.selectedItem = shopItems[selectedItemIndex];
-        Debug.Log(ShopManager.selectedItem.name);
 
         uiDisplay = FindObjectOfType<UIDisplay>();
         uiDisplay.DisplayItemInfo(ShopManager.selectedItem.itemName, ShopManager.selectedItem.itemDescription, ShopManager.selectedItem.cost);
@@ -77,7 +76,11 @@ public class Shop : MonoBehaviour {
         SubstractMoney();
         ChangeSoldOutSprite();
 
+        if (ShopManager.instance.onBuyItemCallBack != null)
+            ShopManager.instance.onBuyItemCallBack.Invoke();
+
         ShopManager.selectedItem.isAvailable = false;
+        ShopManager.selectedItem = null;
     }
 
     private void SubstractMoney()
@@ -91,7 +94,6 @@ public class Shop : MonoBehaviour {
     {
         for (var i = 0; i < shopContainer.childCount; i++)
         {
-            Debug.Log(shopContainer.GetChild(i).name + " " + shopContainer.GetChild(i).GetSiblingIndex());
             Transform itemObj = shopContainer.GetChild(i);
             if (itemObj.GetSiblingIndex() == GetSelectedItemIndex())
             {
