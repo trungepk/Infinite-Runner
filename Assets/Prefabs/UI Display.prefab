@@ -52,8 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameSession: {fileID: 0}
-  player: {fileID: 114041494484194358, guid: 3b4268e3c2209464b99922fc1b64e2c3, type: 2}
   healthText: {fileID: 0}
   pointText: {fileID: 0}
   endGamePoint: {fileID: 0}
   bestScore: {fileID: 0}
+  itemName: {fileID: 0}
+  itemDescription: {fileID: 0}
+  itemCost: {fileID: 0}
+  soldOutSprite: {fileID: 21300000, guid: 184ac4a87d4d17b48a128a56c6268ce7, type: 3}
+  currentMoney: {fileID: 0}

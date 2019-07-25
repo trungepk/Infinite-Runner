@@ -18,4 +18,6 @@ public class ShopManager : MonoBehaviour {
 
     public static ShopItem selectedItem;
 
+    
+
 }

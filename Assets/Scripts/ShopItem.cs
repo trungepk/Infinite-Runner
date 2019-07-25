@@ -6,4 +6,5 @@ public class ShopItem : ScriptableObject {
     public Sprite sprite;
     public int cost;
     public string itemDescription;
+    public bool isAvailable = true;
 }

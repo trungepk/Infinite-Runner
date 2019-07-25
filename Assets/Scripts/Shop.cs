@@ -13,8 +13,10 @@ public class Shop : MonoBehaviour {
     [SerializeField] private Transform shopContainer;
     [SerializeField] private GameObject shopItemPrefab;
     [SerializeField] private UIDisplay uiDisplay;
+    [SerializeField] private Sprite soldOutSprite;
 
-    void Start() {
+    private void Start()
+    {
         PopulateShop();
     }
 
@@ -27,7 +29,12 @@ public class Shop : MonoBehaviour {
 
             //Assign shop item properties
             itemObject.transform.GetChild(1).GetComponent<Image>().sprite = si.sprite;
+            if (!si.isAvailable)
+            {
+                itemObject.transform.GetChild(1).GetComponent<Image>().sprite = soldOutSprite;
+            }
         }
+
         uiDisplay.DisplayItemInfo(shopItems[0].itemName, shopItems[0].itemDescription, shopItems[0].cost); //Default display
     }
 
@@ -46,19 +53,57 @@ public class Shop : MonoBehaviour {
     //Buy button calls this method on clicked
     public void OnBuyItem()
     {
-        if (ShopManager.selectedItem)
-        {
-            Debug.Log(ShopManager.selectedItem.cost);
-        }
-        else
+
+        if (!ShopManager.selectedItem)
         {
             Debug.Log("No item selected");
             return;
         }
+        if (ShopManager.selectedItem.isAvailable)
+        {
+            BuyItem();
+        }
+    }
 
+    private void BuyItem()
+    {
+        SubstractMoney();
+        ChangeSoldOutSprite();
+
+        ShopManager.selectedItem.isAvailable = false;
+    }
+
+    private void SubstractMoney()
+    {
         int moneyAfterPurchase = PlayerPrefs.GetInt(Constants.Money) - ShopManager.selectedItem.cost;
         PlayerPrefs.SetInt(Constants.Money, moneyAfterPurchase);
         uiDisplay.DisplayMoneyAfterPurchase();
+    }
+
+    private void ChangeSoldOutSprite()
+    {
+        for (var i = 0; i < shopContainer.childCount; i++)
+        {
+            Debug.Log(shopContainer.GetChild(i).name + " " + shopContainer.GetChild(i).GetSiblingIndex());
+            Transform itemObj = shopContainer.GetChild(i);
+            if (itemObj.GetSiblingIndex() == GetSelectedItemIndex())
+            {
+                itemObj.GetChild(1).GetComponent<Image>().sprite = soldOutSprite;
+                return;
+            }
+        }
+    }
+
+    private int GetSelectedItemIndex()
+    {
+        for(var i = 0; i < shopItems.Length; i++)
+        {
+            if (ShopManager.selectedItem.itemName == shopItems[i].itemName)
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 }
 	
