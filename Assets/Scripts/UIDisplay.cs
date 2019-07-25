@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIDisplay : MonoBehaviour {
-    [SerializeField] private GameSession gameSession;
+    GameSession gameSession;
     [SerializeField] private Animator animator;
 
     [Header("Player status UI")]
@@ -23,14 +23,21 @@ public class UIDisplay : MonoBehaviour {
 
     private void Start()
     {
+        gameSession = GameSession.instance;
+        gameSession.onAddPointCallBack += ChangeUI;
+        gameSession.onGetHitCallBack += ChangeUI;
+
+        pointText.text = gameSession.point.ToString();
+        healthText.text = gameSession.live.ToString();
         currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money);
     }
 
-    void Update () {
-        healthText.text = gameSession.live.ToString();
+    private void ChangeUI()
+    {
         pointText.text = gameSession.point.ToString();
         endGamePoint.text = gameSession.point.ToString();
         bestScore.text = PlayerPrefs.GetInt(Constants.BestScore, 0).ToString();
+        healthText.text = gameSession.live.ToString();
     }
 
     public void DisplayItemInfo(string itemName, string itemDescription, int cost)

@@ -12,6 +12,9 @@ public class Lava : MonoBehaviour {
             GameSession.instance.live = 0;
             GameSession.instance.ProcessPlayerDead();
             Destroy(other);
+
+            if (GameSession.instance.onGetHitCallBack != null)
+                GameSession.instance.onGetHitCallBack.Invoke();
         }
     }
 

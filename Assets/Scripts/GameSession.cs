@@ -5,7 +5,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour {
+    #region Singleton
     public static GameSession instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance == this)
+        {
+            Destroy(gameObject);
+        }
+    }
+    #endregion
 
     [Header("Player status")]
     public int live = 2;
@@ -22,17 +35,10 @@ public class GameSession : MonoBehaviour {
     [SerializeField] AudioClip loseSFX;
 
     [SerializeField] float slowness = 10f;
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance == this)
-        {
-            Destroy(gameObject);
-        }
-    }
+
+    public delegate void OnInteractWithObject();
+    public OnInteractWithObject onAddPointCallBack;
+    public OnInteractWithObject onGetHitCallBack;
 
     public void ProcessPlayerDead()
     {
@@ -44,6 +50,7 @@ public class GameSession : MonoBehaviour {
             {
                 PlayerPrefs.SetInt(Constants.BestScore, point);
             }
+
             return;
         }
     }
@@ -67,6 +74,9 @@ public class GameSession : MonoBehaviour {
         int progress = this.point % pointTillAddLive; // Current point until add more live
         this.point += point;
         if (progress + point >= pointTillAddLive) { live++; }
+
+        if (onAddPointCallBack != null)
+            onAddPointCallBack.Invoke();
     }
 
     public void ResetScore()

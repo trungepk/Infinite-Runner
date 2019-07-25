@@ -25,6 +25,7 @@ public class PickableThing : MonoBehaviour {
             GameSession.instance.AddPoint(point);
             GameSession.instance.AddMoney(moneyValue);
             AudioSource.PlayClipAtPoint(coinPickUpSFX, Camera.main.transform.position);
+
             gameObject.SetActive(false);
         }
     }

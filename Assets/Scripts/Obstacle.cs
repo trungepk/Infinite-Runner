@@ -6,6 +6,7 @@ public class Obstacle : MonoBehaviour {
     [SerializeField] private int damage = 1;
 
     [SerializeField] private AudioClip collideSFX;
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == Constants.PlayerTag)
@@ -13,6 +14,9 @@ public class Obstacle : MonoBehaviour {
             Hit(damage);
             gameObject.SetActive(false);
             GameSession.instance.ProcessPlayerDead();
+
+            if (GameSession.instance.onGetHitCallBack != null)
+                GameSession.instance.onGetHitCallBack.Invoke();
         }
     }
 
@@ -23,6 +27,9 @@ public class Obstacle : MonoBehaviour {
             Hit(damage);
             gameObject.SetActive(false);
             GameSession.instance.ProcessPlayerDead();
+
+            if (GameSession.instance.onGetHitCallBack != null)
+                GameSession.instance.onGetHitCallBack.Invoke();
         }
     }
 
