@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class UIDisplay : MonoBehaviour {
     [SerializeField] private GameSession gameSession;
+    [SerializeField] private Animator animator;
 
     [Header("Player status UI")]
     [SerializeField] private Text healthText;
@@ -43,4 +44,14 @@ public class UIDisplay : MonoBehaviour {
     {
         currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money, 0);
     } 
+
+    public void SetAnimTrigger(string triggerName)
+    {
+        foreach(AnimatorControllerParameter p in animator.parameters)
+        {
+            if (p.type == AnimatorControllerParameterType.Trigger)
+                animator.ResetTrigger(p.name);
+        }
+        animator.SetTrigger(triggerName);
+    }
 }
