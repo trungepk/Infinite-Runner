@@ -76,8 +76,8 @@ public class GameSession : MonoBehaviour {
 
     public void AddMoney(int money)
     {
-        this.money += money;
-        PlayerPrefs.SetInt(Constants.Money, this.money);
+        int currentMoney = PlayerPrefs.GetInt(Constants.Money);
+        PlayerPrefs.SetInt(Constants.Money, currentMoney + money);
     }
 
     public void ResetMoney(int initialMoney)

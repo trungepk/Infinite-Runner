@@ -61,7 +61,14 @@ public class Shop : MonoBehaviour {
         }
         if (ShopManager.selectedItem.isAvailable)
         {
-            BuyItem();
+            if (ShopManager.instance.HasMoney)
+            {
+                BuyItem();
+            }
+            else
+            {
+                Debug.LogWarning("Display not-enough-money UI");
+            }
         }
     }
 

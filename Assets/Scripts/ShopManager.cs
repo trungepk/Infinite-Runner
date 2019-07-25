@@ -17,7 +17,7 @@ public class ShopManager : MonoBehaviour {
     }
 
     public static ShopItem selectedItem;
-
+    public bool HasMoney { get { return PlayerPrefs.GetInt(Constants.Money) > selectedItem.cost; } } 
     
 
 }
