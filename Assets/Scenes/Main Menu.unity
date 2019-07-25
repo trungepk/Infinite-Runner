@@ -694,6 +694,16 @@ Prefab:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114707740297894284, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1514327888}
+    - target: {fileID: 114707740297894284, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78058798ce0d6484997210089739990e, type: 2}
   m_IsPrefabParent: 0
@@ -911,6 +921,11 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1275502531}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1 &1514327888 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1517583318748224, guid: 78058798ce0d6484997210089739990e,
+    type: 2}
+  m_PrefabInternal: {fileID: 791396531}
 --- !u!114 &1869119708 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114685334667390694, guid: 0604ee71020da4545b78240b825f1327,

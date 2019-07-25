@@ -13,10 +13,9 @@ public class Shop : MonoBehaviour {
     [SerializeField] private Transform shopContainer;
     [SerializeField] private GameObject shopItemPrefab;
     [SerializeField] private UIDisplay uiDisplay;
- 
+
     void Start() {
         PopulateShop();
-        Debug.Log(PlayerPrefs.GetInt(Constants.Money));
     }
 
     private void PopulateShop()
@@ -32,14 +31,34 @@ public class Shop : MonoBehaviour {
         uiDisplay.DisplayItemInfo(shopItems[0].itemName, shopItems[0].itemDescription, shopItems[0].cost); //Default display
     }
 
+    //Shop Item Object in Shop Container calls this method on clicked.
     public void OnSelectItem()
     {
         GameObject selectedItemObj = EventSystem.current.currentSelectedGameObject;
         int selectedItemIndex = selectedItemObj.transform.GetSiblingIndex();
-        ShopItem selectedItem = shopItems[selectedItemIndex];
+        ShopManager.selectedItem = shopItems[selectedItemIndex];
+        Debug.Log(ShopManager.selectedItem.name);
 
         uiDisplay = FindObjectOfType<UIDisplay>();
-        uiDisplay.DisplayItemInfo(selectedItem.itemName, selectedItem.itemDescription, selectedItem.cost);
+        uiDisplay.DisplayItemInfo(ShopManager.selectedItem.itemName, ShopManager.selectedItem.itemDescription, ShopManager.selectedItem.cost);
+    }
+
+    //Buy button calls this method on clicked
+    public void OnBuyItem()
+    {
+        if (ShopManager.selectedItem)
+        {
+            Debug.Log(ShopManager.selectedItem.cost);
+        }
+        else
+        {
+            Debug.Log("No item selected");
+            return;
+        }
+
+        int moneyAfterPurchase = PlayerPrefs.GetInt(Constants.Money) - ShopManager.selectedItem.cost;
+        PlayerPrefs.SetInt(Constants.Money, moneyAfterPurchase);
+        uiDisplay.DisplayMoneyAfterPurchase();
     }
 }
 	

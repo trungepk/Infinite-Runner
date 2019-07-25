@@ -22,7 +22,7 @@ public class UIDisplay : MonoBehaviour {
 
     private void Start()
     {
-        currentMoney.text = PlayerPrefs.GetInt(Constants.Money, 0).ToString();
+        currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money);
     }
 
     void Update () {
@@ -36,11 +36,11 @@ public class UIDisplay : MonoBehaviour {
     {
         this.itemName.text = itemName;
         this.itemDescription.text = itemDescription;
-        itemCost.text = cost.ToString();
+        itemCost.text = "$" + cost;
     }
 
     public void DisplayMoneyAfterPurchase()
     {
-        currentMoney.text = PlayerPrefs.GetInt(Constants.Money, 0).ToString();
+        currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money, 0);
     } 
 }
