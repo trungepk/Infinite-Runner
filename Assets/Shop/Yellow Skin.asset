@@ -9,10 +9,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05d68139c788578458ff96d4a6d97d8c, type: 3}
-  m_Name: Wall Skin
+  m_Name: Yellow Skin
   m_EditorClassIdentifier: 
-  itemName: Wall
-  sprite: {fileID: 21300000, guid: 47a68d0583f2c4a46be490946b13c4be, type: 3}
-  cost: 2
-  itemDescription: qweqwfqwefwfb
-  isAvailable: 0
+  itemName: Yellow
+  sprite: {fileID: 21300000, guid: 6fa1045e7f3b8d64c9d0bb139b036996, type: 3}
+  cost: 1
+  itemDescription: 124563435
+  isAvailable: 1

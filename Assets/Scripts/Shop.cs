@@ -75,11 +75,11 @@ public class Shop : MonoBehaviour {
     {
         SubstractMoney();
         ChangeSoldOutSprite();
+        ShopManager.selectedItem.isAvailable = false;
 
         if (ShopManager.instance.onBuyItemCallBack != null)
             ShopManager.instance.onBuyItemCallBack.Invoke();
 
-        ShopManager.selectedItem.isAvailable = false;
         ShopManager.selectedItem = null;
     }
 
