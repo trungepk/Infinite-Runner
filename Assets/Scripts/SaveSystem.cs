@@ -23,7 +23,6 @@ public static class SaveSystem {
             saveNumber++;
         }
         File.WriteAllText(SAVE_FOLDER + "Item_" + saveNumber + ".txt", selectedItem);
-        Debug.Log(saveNumber);
     }
 
     public static string LoadItem()
@@ -45,14 +44,19 @@ public static class SaveSystem {
                 }
             }
         }
-        if (mostRecentFile != null)
-        {
-            return File.ReadAllText(mostRecentFile.FullName);
-        }
-        else
-        {
-            return null;
-        }
+        return (mostRecentFile != null) ? File.ReadAllText(mostRecentFile.FullName) : null;
     }
 
+    public static List<string> LoadAllSavedItems()
+    {
+        DirectoryInfo directoryInfo = new DirectoryInfo(SAVE_FOLDER);
+        FileInfo[] savedFiles = directoryInfo.GetFiles("*.txt");
+        List<string> itemsDatas = new List<string>();
+        foreach(var fileInfo in savedFiles)
+        {
+            string data = File.ReadAllText(fileInfo.FullName);
+            itemsDatas.Add(data); 
+        }
+        return itemsDatas;
+    }
 }
