@@ -12,6 +12,8 @@ public class Inventory : MonoBehaviour {
     [SerializeField] private Transform inventoryItemContainer;
     [SerializeField] private Sprite[] iconSprites;
     [SerializeField] private UIDisplay uiDisplay;
+    [SerializeField] private GameObject player;
+    [SerializeField] private Material[] playerSkin;
 
     private void Awake()
     {
@@ -84,5 +86,22 @@ public class Inventory : MonoBehaviour {
         int moneyAfterSelling = PlayerPrefs.GetInt(Constants.Money) + InventoryManager.selectedItem.value;
         PlayerPrefs.SetInt(Constants.Money, moneyAfterSelling);
         uiDisplay.DisplayMoneyAfterPurchase();
+    }
+
+    public void UseItem()
+    {
+        player.GetComponent<Renderer>().material = GetMaterial(InventoryManager.selectedItem);
+    }
+
+    private Material GetMaterial(InventoryItemData inventoryItem)
+    {
+        for (var i = 0; i < playerSkin.Length; i++)
+        {
+            if (inventoryItem.spriteName == playerSkin[i].name)
+            {
+                return playerSkin[i];
+            }
+        }
+        return null;
     }
 }
