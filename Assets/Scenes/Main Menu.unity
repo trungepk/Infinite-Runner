@@ -325,32 +325,37 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114298006653213012, guid: 78058798ce0d6484997210089739990e,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1869119708}
-    - target: {fileID: 114263701085368312, guid: 78058798ce0d6484997210089739990e,
+    - target: {fileID: 114110733248366372, guid: 78058798ce0d6484997210089739990e,
         type: 2}
       propertyPath: uiDisplay
       value: 
       objectReference: {fileID: 199887185}
-    - target: {fileID: 114544665507999748, guid: 78058798ce0d6484997210089739990e,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1083138356}
     - target: {fileID: 114911572036810532, guid: 78058798ce0d6484997210089739990e,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1083138356}
-    - target: {fileID: 224925267934409672, guid: 78058798ce0d6484997210089739990e,
+    - target: {fileID: 114544665507999748, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1083138356}
+    - target: {fileID: 114263701085368312, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: uiDisplay
+      value: 
+      objectReference: {fileID: 199887185}
+    - target: {fileID: 114298006653213012, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1869119708}
+    - target: {fileID: 224428710689960474, guid: 78058798ce0d6484997210089739990e,
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224428710689960474, guid: 78058798ce0d6484997210089739990e,
+    - target: {fileID: 224925267934409672, guid: 78058798ce0d6484997210089739990e,
         type: 2}
       propertyPath: m_SizeDelta.y
       value: 0
@@ -963,6 +968,48 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1275502531}
   m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+--- !u!1001 &1583682565
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4521552099796808, guid: e6474ee6f22638346888ff0975122472, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521552099796808, guid: e6474ee6f22638346888ff0975122472, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521552099796808, guid: e6474ee6f22638346888ff0975122472, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521552099796808, guid: e6474ee6f22638346888ff0975122472, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521552099796808, guid: e6474ee6f22638346888ff0975122472, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521552099796808, guid: e6474ee6f22638346888ff0975122472, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521552099796808, guid: e6474ee6f22638346888ff0975122472, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4521552099796808, guid: e6474ee6f22638346888ff0975122472, type: 2}
+      propertyPath: m_RootOrder
+      value: 14
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: e6474ee6f22638346888ff0975122472, type: 2}
+  m_IsPrefabParent: 0
 --- !u!114 &1869119708 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114685334667390694, guid: 0604ee71020da4545b78240b825f1327,

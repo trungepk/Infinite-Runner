@@ -55,8 +55,23 @@ public static class SaveSystem {
         foreach(var fileInfo in savedFiles)
         {
             string data = File.ReadAllText(fileInfo.FullName);
-            itemsDatas.Add(data); 
+            if (!string.IsNullOrEmpty(data))
+                itemsDatas.Add(data);
         }
         return itemsDatas;
+    }
+
+    public static List<string> ScanSaveFolder()
+    {
+        DirectoryInfo directoryInfo = new DirectoryInfo(SAVE_FOLDER);
+        FileInfo[] savedFiles = directoryInfo.GetFiles("*.txt");
+        List<string> itemsPaths = new List<string>();
+        foreach (var fileInfo in savedFiles)
+        {
+            string data = File.ReadAllText(fileInfo.FullName);
+            if (!string.IsNullOrEmpty(data))
+                itemsPaths.Add(fileInfo.FullName);
+        }
+        return itemsPaths;
     }
 }

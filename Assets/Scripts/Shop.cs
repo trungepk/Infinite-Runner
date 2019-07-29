@@ -98,7 +98,7 @@ public class Shop : MonoBehaviour {
             if (itemObj.GetSiblingIndex() == GetSelectedItemIndex())
             {
                 itemObj.GetChild(1).GetComponent<Image>().sprite = soldOutSprite;
-                return;
+                break;
             }
         }
     }

@@ -6,11 +6,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
-
-    public static List<ShopItem> inventory = new List<ShopItem>();
+    public static List<string> possessingItemJson;
+    public static List<string> possessingItemPaths;
     [SerializeField] private GameObject inventoryItemSlotPrefab;
     [SerializeField] private Transform inventoryItemContainer;
     [SerializeField] private Sprite[] iconSprites;
+    [SerializeField] private UIDisplay uiDisplay;
 
     private void Awake()
     {
@@ -20,32 +21,38 @@ public class Inventory : MonoBehaviour {
     {
         ShopManager.instance.onBuyItemCallBack += AddItemToInventory;
         PopulatePossessingItem();
+        possessingItemPaths = SaveSystem.ScanSaveFolder();
     }
 
     private void PopulatePossessingItem()
     {
-        List<string> possessingItemJson = SaveSystem.LoadAllSavedItems();
+        possessingItemJson = SaveSystem.LoadAllSavedItems();
         foreach(var json in possessingItemJson)
         {
-            InventoryItemData possessingItem = JsonUtility.FromJson<InventoryItemData>(json);
-            GameObject item = Instantiate(inventoryItemSlotPrefab, inventoryItemContainer);
-            item.transform.GetChild(0).GetComponent<Image>().sprite = GetIconSprite(possessingItem);
+            if (!String.IsNullOrEmpty(json))
+            {
+                InventoryItemData possessingItem = JsonUtility.FromJson<InventoryItemData>(json);
+                GameObject item = Instantiate(inventoryItemSlotPrefab, inventoryItemContainer);
+                item.transform.GetChild(0).GetComponent<Image>().sprite = GetIconSprite(possessingItem);
+            }
         }
     }
 
     private void AddItemToInventory()
     {
-        inventory.Add(ShopManager.selectedItem);
-
         InventoryItemData data = new InventoryItemData(ShopManager.selectedItem);
         string json = JsonUtility.ToJson(data);
         SaveSystem.SaveItem(json);
+        possessingItemJson.Add(json);
+        possessingItemPaths = SaveSystem.ScanSaveFolder();
 
         string savedItemJson = SaveSystem.LoadItem();
         InventoryItemData savedItem = JsonUtility.FromJson<InventoryItemData>(savedItemJson);
 
         GameObject item = Instantiate(inventoryItemSlotPrefab, inventoryItemContainer);
         item.transform.GetChild(0).GetComponent<Image>().sprite = GetIconSprite(savedItem);
+
+
     }
 
     private Sprite GetIconSprite(InventoryItemData inventoryItem)
@@ -54,7 +61,6 @@ public class Inventory : MonoBehaviour {
         {
             if (inventoryItem.spriteName == iconSprites[i].name)
             {
-                Debug.Log(i + " " + iconSprites[i]);
                 return iconSprites[i];
             }
         }
@@ -63,6 +69,20 @@ public class Inventory : MonoBehaviour {
 
     public void OnSellItem()
     {
-        Debug.Log(InventoryManager.selectedItem.itemName);
+        for(var i = 0; i < possessingItemJson.Count; i++)
+        {
+            if (possessingItemJson[i].Contains(InventoryManager.selectedItem.itemName))
+            {
+                File.WriteAllText(possessingItemPaths[i], "");
+                Destroy(inventoryItemContainer.GetChild(i).gameObject);
+                possessingItemJson.RemoveAt(i);
+                possessingItemPaths = SaveSystem.ScanSaveFolder();
+                break;
+            }
+        }
+
+        int moneyAfterSelling = PlayerPrefs.GetInt(Constants.Money) + InventoryManager.selectedItem.value;
+        PlayerPrefs.SetInt(Constants.Money, moneyAfterSelling);
+        uiDisplay.DisplayMoneyAfterPurchase();
     }
 }

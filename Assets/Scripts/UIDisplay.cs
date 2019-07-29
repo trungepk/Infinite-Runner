@@ -29,7 +29,7 @@ public class UIDisplay : MonoBehaviour {
 
         pointText.text = gameSession.point.ToString();
         healthText.text = gameSession.live.ToString();
-        currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money);
+        currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money, 0);
     }
 
     private void ChangeUI()
@@ -49,7 +49,7 @@ public class UIDisplay : MonoBehaviour {
 
     public void DisplayMoneyAfterPurchase()
     {
-        currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money, 0);
+        currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money);
     } 
 
     public void SetAnimTrigger(string triggerName)
