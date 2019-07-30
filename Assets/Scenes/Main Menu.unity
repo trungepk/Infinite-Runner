@@ -235,6 +235,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114110733248366372, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: playerSkin.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 224890238487443646, guid: 78058798ce0d6484997210089739990e,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -365,6 +370,27 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: UseItem
       objectReference: {fileID: 0}
+    - target: {fileID: 114110733248366372, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1168405136284268, guid: 3b4268e3c2209464b99922fc1b64e2c3,
+        type: 2}
+    - target: {fileID: 114110733248366372, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: playerSkin.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cd8a325470e93b244823a920b7bb82aa, type: 2}
+    - target: {fileID: 114110733248366372, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: playerSkin.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 50b8fdc2cd8545b4a81f07df537b7890, type: 2}
+    - target: {fileID: 114110733248366372, guid: 78058798ce0d6484997210089739990e,
+        type: 2}
+      propertyPath: playerSkin.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 871269ed141ca704c9eaf84beb3d2a21, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78058798ce0d6484997210089739990e, type: 2}
   m_IsPrefabParent: 0

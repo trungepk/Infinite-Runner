@@ -78,7 +78,7 @@ MonoBehaviour:
       type: 2}
     amountToPool: 3
     shouldExpand: 1
-  - objectToPool: {fileID: 1937098728232408, guid: 1a6463f031fa2ea41b660578d4493865,
+  - objectToPool: {fileID: 1890328742453946, guid: d82449b5c1bc2394984b755a10bec5f4,
       type: 2}
     amountToPool: 1
     shouldExpand: 1
@@ -95,13 +95,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   live: 2
   point: 0
+  money: 0
   pointTillAddLive: 50
   obstacle: {fileID: 114426212626292460, guid: 6b283d8e3ce098c4898acde20ba9f687, type: 2}
   loseImage: {fileID: 0}
   retryCanvas: {fileID: 0}
   playerStatusCanvas: {fileID: 0}
+  player: {fileID: 0}
   loseSFX: {fileID: 8300000, guid: fd02a6c8542c8af4dbcc2418573e9796, type: 3}
   slowness: 10
-  levelManager: {fileID: 114534527616373152, guid: 8cd519b30103a7847b8f7d42a04b2cd4,
-    type: 2}
-  player: {fileID: 0}

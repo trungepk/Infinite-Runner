@@ -42,7 +42,7 @@ public class Spawner : MonoBehaviour {
 
     private void SpawnObstacle()
     {
-        string[] typesOfObstacle = { Constants.ObstacleTag, Constants.TallObstacleTag, Constants.LaserObstacleTag };
+        string[] typesOfObstacle = { Constants.ObstacleTag, Constants.TallObstacleTag, Constants.HighObstacleTag };
         int rnd = Random.Range(0, typesOfObstacle.Length);
         GameObject obstacle = ObjectPooler.SharedInstance.GetPooledObject(typesOfObstacle[rnd]);
         if (obstacle)

@@ -7,6 +7,14 @@ public class Obstacle : MonoBehaviour {
 
     [SerializeField] private AudioClip collideSFX;
 
+    private void OnEnable()
+    {
+        if(tag == Constants.HighObstacleTag)
+        {
+            transform.Rotate(0, 0, 90);
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == Constants.PlayerTag)

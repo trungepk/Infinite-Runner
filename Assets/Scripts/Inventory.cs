@@ -53,8 +53,6 @@ public class Inventory : MonoBehaviour {
 
         GameObject item = Instantiate(inventoryItemSlotPrefab, inventoryItemContainer);
         item.transform.GetChild(0).GetComponent<Image>().sprite = GetIconSprite(savedItem);
-
-
     }
 
     private Sprite GetIconSprite(InventoryItemData inventoryItem)
@@ -90,7 +88,7 @@ public class Inventory : MonoBehaviour {
 
     public void UseItem()
     {
-        player.GetComponent<Renderer>().material = GetMaterial(InventoryManager.selectedItem);
+        player.GetComponent<Renderer>().material = GetMaterial(InventoryManager.selectedItem); //Temporary solution
     }
 
     private Material GetMaterial(InventoryItemData inventoryItem)

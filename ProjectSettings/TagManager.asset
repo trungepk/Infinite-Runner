@@ -11,6 +11,7 @@ TagManager:
   - Lava
   - Tall Obstacle
   - Laser Obstacle
+  - High Obstacle
   layers:
   - Default
   - TransparentFX
