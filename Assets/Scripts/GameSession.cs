@@ -57,6 +57,7 @@ public class GameSession : MonoBehaviour {
 
     private IEnumerator Lose()
     {
+        //AudioManager.instance.
         Time.timeScale = 1f / slowness;
         Time.fixedDeltaTime /= slowness;
         loseImage.SetActive(true);
