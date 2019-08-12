@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class UIDisplay : MonoBehaviour {
@@ -24,7 +22,7 @@ public class UIDisplay : MonoBehaviour {
     private void Start()
     {
         gameSession = GameSession.instance;
-        gameSession.onAddPointCallBack += ChangeUI;
+        GameSession.OnPointAdded += ChangeUI;
         gameSession.onGetHitCallBack += ChangeUI;
 
         pointText.text = gameSession.point.ToString();

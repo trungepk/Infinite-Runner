@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class PickableThing : MonoBehaviour {
@@ -7,9 +6,10 @@ public class PickableThing : MonoBehaviour {
     [SerializeField] private int point = 1;
     [SerializeField] private int moneyValue = 1;
 
-    [SerializeField] private AudioClip coinPickUpSFX;
-
     public int Point { get { return point; } }
+    public int MoneyValue { get { return moneyValue; } set { moneyValue = value; } }
+
+    public static event Action<PickableThing> OnPickUp;
 
     private void OnEnable()
     {
@@ -22,9 +22,8 @@ public class PickableThing : MonoBehaviour {
     {
         if (other.tag == Constants.PlayerTag)
         {
-            GameSession.instance.AddPoint(point);
-            GameSession.instance.AddMoney(moneyValue);
-            AudioSource.PlayClipAtPoint(coinPickUpSFX, Camera.main.transform.position);
+            if(OnPickUp!= null)
+                OnPickUp(this);
 
             gameObject.SetActive(false);
         }

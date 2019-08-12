@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour {
     public static AudioManager instance;
+    [HideInInspector] public AudioSource currentAudio;
 
     [SerializeField] private Sound[] sounds;
-  
+
     private void Awake()
     {
         if (instance == null)
@@ -26,7 +25,7 @@ public class AudioManager : MonoBehaviour {
         {
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.audioClip;
-            s.source.volume = s.volumn;
+            s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
@@ -40,6 +39,7 @@ public class AudioManager : MonoBehaviour {
             Debug.LogWarning("Sound " + name + " not found");
             return;
         }
+        currentAudio = s.source;
         s.source.Play();
     }
 
@@ -47,7 +47,6 @@ public class AudioManager : MonoBehaviour {
     {
         switch (SceneManager.GetActiveScene().buildIndex)
         {
-            
             case 0: Play("Menu BGM"); break;
             case 1: Play("Start BGM"); break;
             default: Debug.Log("WTF"); break;

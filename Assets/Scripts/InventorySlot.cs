@@ -1,14 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 public class InventorySlot : MonoBehaviour {
-
-    private void Start()
-    {
-    }
 
     public void OnSelectItem()
     {
@@ -16,7 +8,4 @@ public class InventorySlot : MonoBehaviour {
         InventoryItemData item = JsonUtility.FromJson<InventoryItemData>(itemJson);
         InventoryManager.selectedItem = item;
     }
-
-    
-
 }

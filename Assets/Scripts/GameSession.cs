@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameSession : MonoBehaviour {
     #region Singleton
@@ -37,9 +35,15 @@ public class GameSession : MonoBehaviour {
     [SerializeField] float slowness = 10f;
 
     public delegate void OnInteractWithObject();
-    public OnInteractWithObject onAddPointCallBack;
     public OnInteractWithObject onGetHitCallBack;
 
+    public static event Action OnPointAdded;
+
+    private void Start()
+    {
+        PickableThing.OnPickUp += AddPoint;
+        PickableThing.OnPickUp += AddMoney;
+    }
     public void ProcessPlayerDead()
     {
         if (live <= 0)
@@ -57,7 +61,6 @@ public class GameSession : MonoBehaviour {
 
     private IEnumerator Lose()
     {
-        //AudioManager.instance.
         Time.timeScale = 1f / slowness;
         Time.fixedDeltaTime /= slowness;
         loseImage.SetActive(true);
@@ -70,14 +73,14 @@ public class GameSession : MonoBehaviour {
         retryCanvas.SetActive(true);
     }
 
-    public void AddPoint(int point)
+    public void AddPoint(PickableThing pickable)
     {
-        int progress = this.point % pointTillAddLive; // Current point until add more live
-        this.point += point;
-        if (progress + point >= pointTillAddLive) { live++; }
+        int progress = point % pointTillAddLive; // Current point until add more live
+        point += pickable.Point;
+        if (progress + pickable.Point >= pointTillAddLive) { live++; }
 
-        if (onAddPointCallBack != null)
-            onAddPointCallBack.Invoke();
+        if (OnPointAdded != null)
+            OnPointAdded();
     }
 
     public void ResetScore()
@@ -85,10 +88,10 @@ public class GameSession : MonoBehaviour {
         PlayerPrefs.DeleteKey(Constants.BestScore);
     }
 
-    public void AddMoney(int money)
+    public void AddMoney(PickableThing pickable)
     {
         int currentMoney = PlayerPrefs.GetInt(Constants.Money);
-        PlayerPrefs.SetInt(Constants.Money, currentMoney + money);
+        PlayerPrefs.SetInt(Constants.Money, currentMoney + pickable.MoneyValue);
     }
 
     public void ResetMoney(int initialMoney)

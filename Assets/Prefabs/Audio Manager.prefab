@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4565086775240380}
   - component: {fileID: 114814141376042014}
+  - component: {fileID: 114524677123411710}
   m_Layer: 0
   m_Name: Audio Manager
   m_TagString: Untagged
@@ -40,6 +41,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114524677123411710
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1475686039580862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be54ba32609a38a4fa05517389786539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupCoin: {fileID: 8300000, guid: 3df703416c4669449a6c27f24b65e603, type: 3}
+  collide: {fileID: 8300000, guid: 39820cf3653e7284b90b7ce6a74533de, type: 3}
+  pickupCoinVolume: 1
+  collideVolume: 1
 --- !u!114 &114814141376042014
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,16 +67,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33039795ae7e6a843898d362d04aa122, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAudio: {fileID: 0}
   sounds:
   - name: Menu BGM
     audioClip: {fileID: 8300000, guid: 5e765cdfbc4223d44b3d93ac2dd6af6d, type: 3}
-    volumn: 0.6
+    volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
   - name: Start BGM
     audioClip: {fileID: 8300000, guid: 882f5fbdf228ae645b232d2d79ff9d8d, type: 3}
-    volumn: 0.6
+    volume: 1
     pitch: 1
     loop: 1
     source: {fileID: 0}
