@@ -54,8 +54,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupCoin: {fileID: 8300000, guid: 3df703416c4669449a6c27f24b65e603, type: 3}
   collide: {fileID: 8300000, guid: 39820cf3653e7284b90b7ce6a74533de, type: 3}
+  lose: {fileID: 8300000, guid: fd02a6c8542c8af4dbcc2418573e9796, type: 3}
   pickupCoinVolume: 1
   collideVolume: 1
+  loseVolume: 1
 --- !u!114 &114814141376042014
 MonoBehaviour:
   m_ObjectHideFlags: 1

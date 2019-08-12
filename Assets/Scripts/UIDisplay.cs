@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class UIDisplay : MonoBehaviour {
     GameSession gameSession;
-    [SerializeField] private Animator animator;
+    //[SerializeField] private Animator animator;
 
     [Header("Player status UI")]
     [SerializeField] private Text healthText;
@@ -19,11 +19,18 @@ public class UIDisplay : MonoBehaviour {
     [SerializeField] private Text itemCost;
     [SerializeField] private Text currentMoney;
 
+    [Header("Lose game UI")]
+    [SerializeField] float slowness = 10f;
+    [SerializeField] GameObject loseImage;
+    [SerializeField] GameObject playerStatusCanvas;
+    [SerializeField] GameObject retryCanvas;
+
     private void Start()
     {
+        EventDispatcher.OnPointChanged += ChangeStatusUI;
+        EventDispatcher.OnLiveChanged += ChangeStatusUI;
+        //EventDispatcher.OnLoseGame += DisplayLoseGameUI;
         gameSession = GameSession.instance;
-        GameSession.OnPointAdded += ChangeUI;
-        GameSession.OnLiveChanged += ChangeUI;
 
         pointText.text = gameSession.point.ToString();
         healthText.text = gameSession.live.ToString();
@@ -32,11 +39,12 @@ public class UIDisplay : MonoBehaviour {
 
     private void OnDisable()
     {
-        GameSession.OnPointAdded -= ChangeUI;
-        GameSession.OnLiveChanged -= ChangeUI;
+        EventDispatcher.OnPointChanged -= ChangeStatusUI;
+        EventDispatcher.OnLiveChanged -= ChangeStatusUI;
+        //EventDispatcher.OnLoseGame -= DisplayLoseGameUI;
     }
 
-    private void ChangeUI()
+    private void ChangeStatusUI()
     {
         pointText.text = gameSession.point.ToString();
         endGamePoint.text = gameSession.point.ToString();
@@ -56,13 +64,26 @@ public class UIDisplay : MonoBehaviour {
         currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money);
     } 
 
-    public void SetAnimTrigger(string triggerName)
-    {
-        foreach(AnimatorControllerParameter p in animator.parameters)
-        {
-            if (p.type == AnimatorControllerParameterType.Trigger)
-                animator.ResetTrigger(p.name);
-        }
-        animator.SetTrigger(triggerName);
-    }
+    //private IEnumerator DisplayLoseGameUI()
+    //{
+    //    Time.timeScale = 1f / slowness;
+    //    Time.fixedDeltaTime /= slowness;
+    //    loseImage.SetActive(true);
+    //    yield return new WaitForSeconds(1f);
+    //    Time.timeScale = 1f;
+    //    Time.fixedDeltaTime *= slowness;
+    //    loseImage.SetActive(false);
+    //    playerStatusCanvas.SetActive(false);
+    //    retryCanvas.SetActive(true);
+    //}
+
+    //public void SetAnimTrigger(string triggerName)
+    //{
+    //    foreach(AnimatorControllerParameter p in animator.parameters)
+    //    {
+    //        if (p.type == AnimatorControllerParameterType.Trigger)
+    //            animator.ResetTrigger(p.name);
+    //    }
+    //    animator.SetTrigger(triggerName);
+    //}
 }

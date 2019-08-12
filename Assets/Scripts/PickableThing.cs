@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PickableThing : MonoBehaviour {
 
@@ -8,8 +7,6 @@ public class PickableThing : MonoBehaviour {
 
     public int Point { get { return point; } }
     public int MoneyValue { get { return moneyValue; } set { moneyValue = value; } }
-
-    public static event Action<PickableThing> OnPickUp;
 
     private void OnEnable()
     {
@@ -22,8 +19,7 @@ public class PickableThing : MonoBehaviour {
     {
         if (other.tag == Constants.PlayerTag)
         {
-            if (OnPickUp != null)
-                OnPickUp(this);
+            EventDispatcher.RaiseOnPickUp(this);
 
             gameObject.SetActive(false);
         }

@@ -1479,6 +1479,21 @@ Prefab:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114096829630189448, guid: b676cd8b2779a274eb0beb36eddf29be,
+        type: 2}
+      propertyPath: retryCanvas
+      value: 
+      objectReference: {fileID: 633974698}
+    - target: {fileID: 114096829630189448, guid: b676cd8b2779a274eb0beb36eddf29be,
+        type: 2}
+      propertyPath: loseImage
+      value: 
+      objectReference: {fileID: 706771629}
+    - target: {fileID: 114096829630189448, guid: b676cd8b2779a274eb0beb36eddf29be,
+        type: 2}
+      propertyPath: playerStatusCanvas
+      value: 
+      objectReference: {fileID: 268695441}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b676cd8b2779a274eb0beb36eddf29be, type: 2}
   m_IsPrefabParent: 0

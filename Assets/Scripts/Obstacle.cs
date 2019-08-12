@@ -1,12 +1,9 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Obstacle : MonoBehaviour {
     [SerializeField] private int damage = 1;
 
     public int Damage { get { return damage; } }
-
-    public static event Action<Obstacle> OnCollideWithPlayer;
 
     private void OnEnable()
     {
@@ -20,9 +17,7 @@ public class Obstacle : MonoBehaviour {
     {
         if (collision.gameObject.tag == Constants.PlayerTag)
         {
-            if (OnCollideWithPlayer != null)
-                OnCollideWithPlayer(this);
-
+            EventDispatcher.RaiseOnCollideWithPlayer(this);
             gameObject.SetActive(false);
         }
     }
@@ -31,8 +26,7 @@ public class Obstacle : MonoBehaviour {
     {
         if(other.tag == Constants.PlayerTag)
         {
-            if (OnCollideWithPlayer != null)
-                OnCollideWithPlayer(this);
+            EventDispatcher.RaiseOnCollideWithPlayer(this);
             gameObject.SetActive(false);
         }
     }

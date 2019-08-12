@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class GameSession : MonoBehaviour {
@@ -25,7 +24,6 @@ public class GameSession : MonoBehaviour {
     [SerializeField] private int pointTillAddLive = 50;
 
     [Header("References")]
-    [SerializeField] private Obstacle obstacle;
     [SerializeField] GameObject loseImage;
     [SerializeField] GameObject retryCanvas;
     [SerializeField] GameObject playerStatusCanvas;
@@ -34,34 +32,30 @@ public class GameSession : MonoBehaviour {
 
     [SerializeField] float slowness = 10f;
 
-    public delegate void OnInteractWithObject();
-    public OnInteractWithObject onGetHitCallBack;
-
-    public static event Action OnPointAdded;
-    public static event Action OnLiveChanged;
-
     private void Start()
     {
-        PickableThing.OnPickUp += AddPoint;
-        PickableThing.OnPickUp += AddMoney;
-        Obstacle.OnCollideWithPlayer += ReduceLive;
-        Obstacle.OnCollideWithPlayer += ProcessPlayerDead;
-        Lava.OnFellDown += Shredded;
+        EventDispatcher.OnPickUp += AddPoint;
+        EventDispatcher.OnPickUp += AddMoney;
+        EventDispatcher.OnCollideWithPlayer += ReduceLive;
+        EventDispatcher.OnCollideWithPlayer += ProcessPlayerDead;
+        EventDispatcher.OnFellDown += Shredded;
     }
 
     private void OnDisable()
     {
-        PickableThing.OnPickUp -= AddPoint;
-        PickableThing.OnPickUp -= AddMoney;
-        Obstacle.OnCollideWithPlayer -= ReduceLive;
-        Obstacle.OnCollideWithPlayer -= ProcessPlayerDead;
-        Lava.OnFellDown -= Shredded;
+        EventDispatcher.OnPickUp -= AddPoint;
+        EventDispatcher.OnPickUp -= AddMoney;
+        EventDispatcher.OnCollideWithPlayer -= ReduceLive;
+        EventDispatcher.OnCollideWithPlayer -= ProcessPlayerDead;
+        EventDispatcher.OnFellDown -= Shredded;
     }
-    public void ProcessPlayerDead(Obstacle obstacle)
+
+    private void ProcessPlayerDead(Obstacle obstacle)
     {
         if (live <= 0)
         {
-            StartCoroutine(Lose());
+            //StartCoroutine(Lose());
+            Lose();
             Destroy(player);
             if(point > PlayerPrefs.GetInt(Constants.BestScore, 0))
             {
@@ -73,11 +67,12 @@ public class GameSession : MonoBehaviour {
     }
 
     private IEnumerator Lose()
+    //private void Lose()
     {
+        //EventDispatcher.RaiseOnLoseGame();
         Time.timeScale = 1f / slowness;
         Time.fixedDeltaTime /= slowness;
         loseImage.SetActive(true);
-        AudioSource.PlayClipAtPoint(loseSFX, Camera.main.transform.position);
         yield return new WaitForSeconds(1f);
         Time.timeScale = 1f;
         Time.fixedDeltaTime *= slowness;
@@ -86,14 +81,13 @@ public class GameSession : MonoBehaviour {
         retryCanvas.SetActive(true);
     }
 
-    public void AddPoint(PickableThing pickable)
+    private void AddPoint(PickableThing pickable)
     {
         int progress = point % pointTillAddLive; // Current point until add more live
         point += pickable.Point;
         if (progress + pickable.Point >= pointTillAddLive) { live++; }
 
-        if (OnPointAdded != null)
-            OnPointAdded();
+        EventDispatcher.RaiseOnPointChanged();
     }
 
     public void ResetScore()
@@ -101,7 +95,7 @@ public class GameSession : MonoBehaviour {
         PlayerPrefs.DeleteKey(Constants.BestScore);
     }
 
-    public void AddMoney(PickableThing pickable)
+    private void AddMoney(PickableThing pickable)
     {
         int currentMoney = PlayerPrefs.GetInt(Constants.Money);
         PlayerPrefs.SetInt(Constants.Money, currentMoney + pickable.MoneyValue);
@@ -115,20 +109,19 @@ public class GameSession : MonoBehaviour {
     private void ReduceLive(Obstacle obstacle)
     {
         live -= obstacle.Damage;
-        if (OnLiveChanged != null)
-            OnLiveChanged();
+        EventDispatcher.RaiseOnLiveChanged();
     }
 
     private void Shredded()
     {
         live = 0;
-        StartCoroutine(Lose());
+        //StartCoroutine(Lose());
+        Lose();
         Destroy(player);
         if (point > PlayerPrefs.GetInt(Constants.BestScore, 0))
         {
             PlayerPrefs.SetInt(Constants.BestScore, point);
         }
-        if (OnLiveChanged != null)
-            OnLiveChanged();
+        EventDispatcher.RaiseOnLiveChanged();
     }
 }

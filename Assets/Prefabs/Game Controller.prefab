@@ -97,7 +97,6 @@ MonoBehaviour:
   point: 0
   money: 0
   pointTillAddLive: 50
-  obstacle: {fileID: 114426212626292460, guid: 6b283d8e3ce098c4898acde20ba9f687, type: 2}
   loseImage: {fileID: 0}
   retryCanvas: {fileID: 0}
   playerStatusCanvas: {fileID: 0}
