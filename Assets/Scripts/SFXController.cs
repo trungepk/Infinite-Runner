@@ -11,6 +11,13 @@ public class SFXController : MonoBehaviour {
     private void Start()
     {
         PickableThing.OnPickUp += TriggerPickupCoinSFX;
+        Obstacle.OnCollideWithPlayer += TriggerCollideSFX;
+    }
+
+    private void OnDisable()
+    {
+        PickableThing.OnPickUp -= TriggerPickupCoinSFX;
+        Obstacle.OnCollideWithPlayer -= TriggerCollideSFX;
     }
 
     private void TriggerPickupCoinSFX(PickableThing pickable)
@@ -19,7 +26,7 @@ public class SFXController : MonoBehaviour {
         AudioSource.PlayClipAtPoint(pickupCoin, Camera.main.transform.position, pickupCoinVolume);
     }
 
-    private void TriggerCollideSFX()
+    private void TriggerCollideSFX(Obstacle obstacle)
     {
         if (!collide) { return; }
         AudioSource.PlayClipAtPoint(collide, Camera.main.transform.position, collideVolume);

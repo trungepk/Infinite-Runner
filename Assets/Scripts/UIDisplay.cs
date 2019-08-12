@@ -23,11 +23,17 @@ public class UIDisplay : MonoBehaviour {
     {
         gameSession = GameSession.instance;
         GameSession.OnPointAdded += ChangeUI;
-        gameSession.onGetHitCallBack += ChangeUI;
+        GameSession.OnLiveChanged += ChangeUI;
 
         pointText.text = gameSession.point.ToString();
         healthText.text = gameSession.live.ToString();
         currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money, 0);
+    }
+
+    private void OnDisable()
+    {
+        GameSession.OnPointAdded -= ChangeUI;
+        GameSession.OnLiveChanged -= ChangeUI;
     }
 
     private void ChangeUI()

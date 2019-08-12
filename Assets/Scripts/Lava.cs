@@ -1,18 +1,18 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Lava : MonoBehaviour {
     [SerializeField] private float scrollingSpeed = 5f;
     private float pathLength;
+
+    public static event Action OnFellDown;
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == Constants.PlayerTag)
         {
-            GameSession.instance.live = 0;
-            GameSession.instance.ProcessPlayerDead();
             Destroy(other);
-
-            if (GameSession.instance.onGetHitCallBack != null)
-                GameSession.instance.onGetHitCallBack.Invoke();
+            if (OnFellDown != null)
+                OnFellDown();
         }
     }
 

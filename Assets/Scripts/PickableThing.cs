@@ -22,7 +22,7 @@ public class PickableThing : MonoBehaviour {
     {
         if (other.tag == Constants.PlayerTag)
         {
-            if(OnPickUp!= null)
+            if (OnPickUp != null)
                 OnPickUp(this);
 
             gameObject.SetActive(false);

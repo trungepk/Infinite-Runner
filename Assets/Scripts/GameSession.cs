@@ -38,13 +38,26 @@ public class GameSession : MonoBehaviour {
     public OnInteractWithObject onGetHitCallBack;
 
     public static event Action OnPointAdded;
+    public static event Action OnLiveChanged;
 
     private void Start()
     {
         PickableThing.OnPickUp += AddPoint;
         PickableThing.OnPickUp += AddMoney;
+        Obstacle.OnCollideWithPlayer += ReduceLive;
+        Obstacle.OnCollideWithPlayer += ProcessPlayerDead;
+        Lava.OnFellDown += Shredded;
     }
-    public void ProcessPlayerDead()
+
+    private void OnDisable()
+    {
+        PickableThing.OnPickUp -= AddPoint;
+        PickableThing.OnPickUp -= AddMoney;
+        Obstacle.OnCollideWithPlayer -= ReduceLive;
+        Obstacle.OnCollideWithPlayer -= ProcessPlayerDead;
+        Lava.OnFellDown -= Shredded;
+    }
+    public void ProcessPlayerDead(Obstacle obstacle)
     {
         if (live <= 0)
         {
@@ -97,5 +110,25 @@ public class GameSession : MonoBehaviour {
     public void ResetMoney(int initialMoney)
     {
         PlayerPrefs.SetInt(Constants.Money, initialMoney);
+    }
+
+    private void ReduceLive(Obstacle obstacle)
+    {
+        live -= obstacle.Damage;
+        if (OnLiveChanged != null)
+            OnLiveChanged();
+    }
+
+    private void Shredded()
+    {
+        live = 0;
+        StartCoroutine(Lose());
+        Destroy(player);
+        if (point > PlayerPrefs.GetInt(Constants.BestScore, 0))
+        {
+            PlayerPrefs.SetInt(Constants.BestScore, point);
+        }
+        if (OnLiveChanged != null)
+            OnLiveChanged();
     }
 }
