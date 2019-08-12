@@ -20,7 +20,6 @@ public class PickableThing : MonoBehaviour {
         if (other.tag == Constants.PlayerTag)
         {
             EventDispatcher.RaiseOnPickUp(this);
-
             gameObject.SetActive(false);
         }
     }

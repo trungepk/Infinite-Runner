@@ -54,8 +54,8 @@ public class GameSession : MonoBehaviour {
     {
         if (live <= 0)
         {
-            //StartCoroutine(Lose());
-            Lose();
+            StartCoroutine(Lose());
+            //Lose();
             Destroy(player);
             if(point > PlayerPrefs.GetInt(Constants.BestScore, 0))
             {
@@ -115,8 +115,8 @@ public class GameSession : MonoBehaviour {
     private void Shredded()
     {
         live = 0;
-        //StartCoroutine(Lose());
-        Lose();
+        StartCoroutine(Lose());
+        //Lose();
         Destroy(player);
         if (point > PlayerPrefs.GetInt(Constants.BestScore, 0))
         {

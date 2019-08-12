@@ -19,11 +19,11 @@ public class UIDisplay : MonoBehaviour {
     [SerializeField] private Text itemCost;
     [SerializeField] private Text currentMoney;
 
-    [Header("Lose game UI")]
-    [SerializeField] float slowness = 10f;
-    [SerializeField] GameObject loseImage;
-    [SerializeField] GameObject playerStatusCanvas;
-    [SerializeField] GameObject retryCanvas;
+    //[Header("Lose game UI")]
+    //[SerializeField] float slowness = 10f;
+    //[SerializeField] GameObject loseImage;
+    //[SerializeField] GameObject playerStatusCanvas;
+    //[SerializeField] GameObject retryCanvas;
 
     private void Start()
     {
