@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GameSession : MonoBehaviour {
     #region Singleton
@@ -19,18 +18,9 @@ public class GameSession : MonoBehaviour {
 
     [Header("Player status")]
     public int live = 2;
-    public int point;
-    public int money;
-    [SerializeField] private int pointTillAddLive = 50;
-
-    [Header("References")]
-    [SerializeField] GameObject loseImage;
-    [SerializeField] GameObject retryCanvas;
-    [SerializeField] GameObject playerStatusCanvas;
+    [HideInInspector] public int point;
     [SerializeField] private GameObject player;
-    [SerializeField] AudioClip loseSFX;
-
-    [SerializeField] float slowness = 10f;
+    [SerializeField] private int pointTillAddLive = 50;
 
     private void Start()
     {
@@ -54,31 +44,25 @@ public class GameSession : MonoBehaviour {
     {
         if (live <= 0)
         {
-            StartCoroutine(Lose());
-            //Lose();
-            Destroy(player);
-            if(point > PlayerPrefs.GetInt(Constants.BestScore, 0))
-            {
-                PlayerPrefs.SetInt(Constants.BestScore, point);
-            }
-
-            return;
+            Lose();
         }
     }
 
-    private IEnumerator Lose()
-    //private void Lose()
+    private void Shredded()
     {
-        //EventDispatcher.RaiseOnLoseGame();
-        Time.timeScale = 1f / slowness;
-        Time.fixedDeltaTime /= slowness;
-        loseImage.SetActive(true);
-        yield return new WaitForSeconds(1f);
-        Time.timeScale = 1f;
-        Time.fixedDeltaTime *= slowness;
-        loseImage.SetActive(false);
-        playerStatusCanvas.SetActive(false);
-        retryCanvas.SetActive(true);
+        live = 0;
+        Lose();
+        EventDispatcher.RaiseOnLiveChanged();
+    }
+
+    private void Lose()
+    {
+        EventDispatcher.RaiseOnLoseGame();
+        Destroy(player);
+        if (point > PlayerPrefs.GetInt(Constants.BestScore, 0))
+        {
+            PlayerPrefs.SetInt(Constants.BestScore, point);
+        }
     }
 
     private void AddPoint(PickableThing pickable)
@@ -90,20 +74,10 @@ public class GameSession : MonoBehaviour {
         EventDispatcher.RaiseOnPointChanged();
     }
 
-    public void ResetScore()
-    {
-        PlayerPrefs.DeleteKey(Constants.BestScore);
-    }
-
     private void AddMoney(PickableThing pickable)
     {
         int currentMoney = PlayerPrefs.GetInt(Constants.Money);
         PlayerPrefs.SetInt(Constants.Money, currentMoney + pickable.MoneyValue);
-    }
-
-    public void ResetMoney(int initialMoney)
-    {
-        PlayerPrefs.SetInt(Constants.Money, initialMoney);
     }
 
     private void ReduceLive(Obstacle obstacle)
@@ -112,16 +86,13 @@ public class GameSession : MonoBehaviour {
         EventDispatcher.RaiseOnLiveChanged();
     }
 
-    private void Shredded()
+    public void ResetScore()
     {
-        live = 0;
-        StartCoroutine(Lose());
-        //Lose();
-        Destroy(player);
-        if (point > PlayerPrefs.GetInt(Constants.BestScore, 0))
-        {
-            PlayerPrefs.SetInt(Constants.BestScore, point);
-        }
-        EventDispatcher.RaiseOnLiveChanged();
+        PlayerPrefs.DeleteKey(Constants.BestScore);
+    }
+
+    public void ResetMoney(int initialMoney)
+    {
+        PlayerPrefs.SetInt(Constants.Money, initialMoney);
     }
 }

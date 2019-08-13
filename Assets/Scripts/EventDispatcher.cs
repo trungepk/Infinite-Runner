@@ -3,7 +3,7 @@
 public class EventDispatcher
 {
     /// <summary>
-    /// When player falls to lava event.
+    /// Player falls to lava event.
     /// </summary>
     public static event Action OnFellDown;
     /// <summary>
@@ -16,7 +16,7 @@ public class EventDispatcher
     }
 
     /// <summary>
-    /// When obstacle collides with player event.
+    /// Obstacle collides with player event.
     /// </summary>
     public static event Action<Obstacle> OnCollideWithPlayer;
     /// <summary>
@@ -30,7 +30,7 @@ public class EventDispatcher
     }
 
     /// <summary>
-    /// When player collides with pickable thing event..
+    /// Player collides with pickable thing event..
     /// </summary>
     public static event Action<PickableThing> OnPickUp;
     /// <summary>
@@ -44,7 +44,7 @@ public class EventDispatcher
     }
 
     /// <summary>
-    /// When player's point changed event.
+    /// Player's point changed event.
     /// </summary>
     public static event Action OnPointChanged;
     /// <summary>
@@ -57,7 +57,7 @@ public class EventDispatcher
     }
 
     /// <summary>
-    /// When player's live changed event.
+    /// Player's live changed event.
     /// </summary>
     public static event Action OnLiveChanged;
     /// <summary>
@@ -69,11 +69,46 @@ public class EventDispatcher
             OnLiveChanged();
     }
 
-    //public delegate IEnumerator onLoseGame();
-    //public static event onLoseGame OnLoseGame;
-    //public static void RaiseOnLoseGame()
-    //{
-    //    if (OnLoseGame != null)
-    //        StartCoroutine(OnLoseGame());
-    //}
+    /// <summary>
+    /// Money changed after trading event.
+    /// </summary>
+    public static event Action OnMoneyChanged;
+    /// <summary>
+    /// Invoke OnMoneyChanged event.
+    /// </summary>
+    public static void RaiseOnMoneyChanged()
+    {
+        if (OnMoneyChanged != null)
+            OnMoneyChanged();
+    }
+
+    /// <summary>
+    /// Select item in shop event.
+    /// </summary>
+    public static event Action<string, string, int> OnSelectItem;
+    /// <summary>
+    /// Invoke OnSelectItem event.
+    /// </summary>
+    /// <param name="itemName"></param>
+    /// <param name="itemDescription"></param>
+    /// <param name="cost"></param>
+    public static void RaiseOnSelectItem(string itemName, string itemDescription, int cost)
+    {
+        if (OnSelectItem != null)
+            OnSelectItem(itemName, itemDescription, cost);
+    }
+
+    public static event Action OnLoseGame;
+    public static void RaiseOnLoseGame()
+    {
+        if (OnLoseGame != null)
+            OnLoseGame();
+    }
+
+    public static event Action OnBuyItem;
+    public static void RaiseOnBuyItem()
+    {
+        if (OnBuyItem != null)
+            OnBuyItem();
+    }
 }

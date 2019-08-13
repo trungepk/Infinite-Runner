@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class SFXController : MonoBehaviour {
 
@@ -12,14 +11,14 @@ public class SFXController : MonoBehaviour {
     {
         EventDispatcher.OnPickUp += TriggerPickupCoinSFX;
         EventDispatcher.OnCollideWithPlayer += TriggerCollideSFX;
-        //EventDispatcher.OnLoseGame += TriggerLoseSFX;
+        EventDispatcher.OnLoseGame += TriggerLoseSFX;
     }
 
     private void OnDisable()
     {
         EventDispatcher.OnPickUp -= TriggerPickupCoinSFX;
         EventDispatcher.OnCollideWithPlayer -= TriggerCollideSFX;
-        //EventDispatcher.OnLoseGame -= TriggerLoseSFX;
+        EventDispatcher.OnLoseGame -= TriggerLoseSFX;
     }
 
     private void TriggerPickupCoinSFX(PickableThing pickable)
@@ -34,12 +33,9 @@ public class SFXController : MonoBehaviour {
         AudioSource.PlayClipAtPoint(collide, Camera.main.transform.position, collideVolume);
     }
 
-    private IEnumerator TriggerLoseSFX()
+    private void TriggerLoseSFX()
     {
-        if (lose)
-        {
-            yield return null;
-            AudioSource.PlayClipAtPoint(lose, Camera.main.transform.position, loseVolume);
-        }
+        if (!lose) { return; }
+        AudioSource.PlayClipAtPoint(lose, Camera.main.transform.position, loseVolume);
     }
 }

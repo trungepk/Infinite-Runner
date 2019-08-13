@@ -9,7 +9,6 @@ public class Shop : MonoBehaviour {
     [Header("References")]
     [SerializeField] private Transform shopContainer;
     [SerializeField] private GameObject shopItemPrefab;
-    [SerializeField] private UIDisplay uiDisplay;
     [SerializeField] private Sprite soldOutSprite;
 
     private void Start()
@@ -31,8 +30,6 @@ public class Shop : MonoBehaviour {
                 itemObject.transform.GetChild(1).GetComponent<Image>().sprite = soldOutSprite;
             }
         }
-
-        uiDisplay.DisplayItemInfo(shopItems[0].itemName, shopItems[0].itemDescription, shopItems[0].cost); //Default display
     }
 
     //Shop Item Object in Shop Container calls this method on clicked.
@@ -41,9 +38,9 @@ public class Shop : MonoBehaviour {
         GameObject selectedItemObj = EventSystem.current.currentSelectedGameObject;
         int selectedItemIndex = selectedItemObj.transform.GetSiblingIndex();
         ShopManager.selectedItem = shopItems[selectedItemIndex];
+        ShopItem item = ShopManager.selectedItem;
 
-        uiDisplay = FindObjectOfType<UIDisplay>();
-        uiDisplay.DisplayItemInfo(ShopManager.selectedItem.itemName, ShopManager.selectedItem.itemDescription, ShopManager.selectedItem.cost);
+        EventDispatcher.RaiseOnSelectItem(item.itemName, item.itemDescription, item.cost);
     }
 
     //Buy button calls this method on clicked
@@ -73,10 +70,7 @@ public class Shop : MonoBehaviour {
         SubstractMoney();
         ChangeSoldOutSprite();
         ShopManager.selectedItem.isAvailable = false;
-
-        if (ShopManager.instance.onBuyItemCallBack != null)
-            ShopManager.instance.onBuyItemCallBack.Invoke();
-
+        EventDispatcher.RaiseOnBuyItem();
         ShopManager.selectedItem = null;
     }
 
@@ -84,7 +78,7 @@ public class Shop : MonoBehaviour {
     {
         int moneyAfterPurchase = PlayerPrefs.GetInt(Constants.Money) - ShopManager.selectedItem.cost;
         PlayerPrefs.SetInt(Constants.Money, moneyAfterPurchase);
-        uiDisplay.DisplayMoneyAfterPurchase();
+        EventDispatcher.RaiseOnMoneyChanged();
     }
 
     private void ChangeSoldOutSprite()

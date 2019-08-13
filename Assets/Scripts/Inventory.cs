@@ -10,7 +10,6 @@ public class Inventory : MonoBehaviour {
     [SerializeField] private GameObject inventoryItemSlotPrefab;
     [SerializeField] private Transform inventoryItemContainer;
     [SerializeField] private Sprite[] iconSprites;
-    [SerializeField] private UIDisplay uiDisplay;
     [SerializeField] private GameObject player;
     [SerializeField] private Material[] playerSkin;
 
@@ -20,7 +19,7 @@ public class Inventory : MonoBehaviour {
     }
     private void Start()
     {
-        ShopManager.instance.onBuyItemCallBack += AddItemToInventory;
+        EventDispatcher.OnBuyItem += AddItemToInventory;
         PopulatePossessingItem();
         possessingItemPaths = SaveSystem.ScanSaveFolder();
     }
@@ -82,7 +81,7 @@ public class Inventory : MonoBehaviour {
 
         int moneyAfterSelling = PlayerPrefs.GetInt(Constants.Money) + InventoryManager.selectedItem.value;
         PlayerPrefs.SetInt(Constants.Money, moneyAfterSelling);
-        uiDisplay.DisplayMoneyAfterPurchase();
+        EventDispatcher.RaiseOnMoneyChanged();
     }
 
     public void UseItem()

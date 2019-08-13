@@ -6,7 +6,7 @@ public class PickableThing : MonoBehaviour {
     [SerializeField] private int moneyValue = 1;
 
     public int Point { get { return point; } }
-    public int MoneyValue { get { return moneyValue; } set { moneyValue = value; } }
+    public int MoneyValue { get { return moneyValue; } }
 
     private void OnEnable()
     {

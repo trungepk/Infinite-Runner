@@ -1,9 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class UIDisplay : MonoBehaviour {
     GameSession gameSession;
-    //[SerializeField] private Animator animator;
 
     [Header("Player status UI")]
     [SerializeField] private Text healthText;
@@ -19,19 +19,21 @@ public class UIDisplay : MonoBehaviour {
     [SerializeField] private Text itemCost;
     [SerializeField] private Text currentMoney;
 
-    //[Header("Lose game UI")]
-    //[SerializeField] float slowness = 10f;
-    //[SerializeField] GameObject loseImage;
-    //[SerializeField] GameObject playerStatusCanvas;
-    //[SerializeField] GameObject retryCanvas;
+    [Header("Lose game UI")]
+    [SerializeField] float slowness = 10f;
+    [SerializeField] GameObject loseImage;
+    [SerializeField] GameObject playerStatusCanvas;
+    [SerializeField] GameObject retryCanvas;
 
     private void Start()
     {
         EventDispatcher.OnPointChanged += ChangeStatusUI;
         EventDispatcher.OnLiveChanged += ChangeStatusUI;
-        //EventDispatcher.OnLoseGame += DisplayLoseGameUI;
-        gameSession = GameSession.instance;
+        EventDispatcher.OnMoneyChanged += DisplayMoneyAfterTrading;
+        EventDispatcher.OnSelectItem += DisplayItemInfo;
+        EventDispatcher.OnLoseGame += DisplayLoseGameUI;
 
+        gameSession = GameSession.instance;
         pointText.text = gameSession.point.ToString();
         healthText.text = gameSession.live.ToString();
         currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money, 0);
@@ -41,7 +43,9 @@ public class UIDisplay : MonoBehaviour {
     {
         EventDispatcher.OnPointChanged -= ChangeStatusUI;
         EventDispatcher.OnLiveChanged -= ChangeStatusUI;
-        //EventDispatcher.OnLoseGame -= DisplayLoseGameUI;
+        EventDispatcher.OnMoneyChanged -= DisplayMoneyAfterTrading;
+        EventDispatcher.OnSelectItem -= DisplayItemInfo;
+        EventDispatcher.OnLoseGame -= DisplayLoseGameUI;
     }
 
     private void ChangeStatusUI()
@@ -52,38 +56,33 @@ public class UIDisplay : MonoBehaviour {
         healthText.text = gameSession.live.ToString();
     }
 
-    public void DisplayItemInfo(string itemName, string itemDescription, int cost)
+    private void DisplayItemInfo(string itemName, string itemDescription, int cost)
     {
         this.itemName.text = itemName;
         this.itemDescription.text = itemDescription;
         itemCost.text = "$" + cost;
     }
 
-    public void DisplayMoneyAfterPurchase()
+    private void DisplayMoneyAfterTrading()
     {
         currentMoney.text = "$" + PlayerPrefs.GetInt(Constants.Money);
-    } 
+    }
 
-    //private IEnumerator DisplayLoseGameUI()
-    //{
-    //    Time.timeScale = 1f / slowness;
-    //    Time.fixedDeltaTime /= slowness;
-    //    loseImage.SetActive(true);
-    //    yield return new WaitForSeconds(1f);
-    //    Time.timeScale = 1f;
-    //    Time.fixedDeltaTime *= slowness;
-    //    loseImage.SetActive(false);
-    //    playerStatusCanvas.SetActive(false);
-    //    retryCanvas.SetActive(true);
-    //}
+    private void DisplayLoseGameUI()
+    {
+        Time.timeScale = 1f / slowness;
+        Time.fixedDeltaTime /= slowness;
+        loseImage.SetActive(true);
+        StartCoroutine(DisplayRetryUI());
+    }
 
-    //public void SetAnimTrigger(string triggerName)
-    //{
-    //    foreach(AnimatorControllerParameter p in animator.parameters)
-    //    {
-    //        if (p.type == AnimatorControllerParameterType.Trigger)
-    //            animator.ResetTrigger(p.name);
-    //    }
-    //    animator.SetTrigger(triggerName);
-    //}
+    private IEnumerator DisplayRetryUI()
+    {
+        yield return new WaitForSeconds(1f);
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime *= slowness;
+        loseImage.SetActive(false);
+        playerStatusCanvas.SetActive(false);
+        retryCanvas.SetActive(true);
+    }
 }
