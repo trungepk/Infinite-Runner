@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectPooler : MonoBehaviour {
-
     public static ObjectPooler SharedInstance;
-
-    public List<GameObject> pooledObjects;
-    public List<ObjectPoolItem> itemToPool;
-
+    #region Singleton
     private void Awake()
     {
         if(SharedInstance == null)
@@ -19,6 +14,10 @@ public class ObjectPooler : MonoBehaviour {
             Destroy(gameObject);
         }
     }
+    #endregion
+
+    [SerializeField] private List<ObjectPoolItem> itemToPool;
+    private List<GameObject> pooledObjects;
 
     private void Start()
     {
@@ -39,9 +38,7 @@ public class ObjectPooler : MonoBehaviour {
         for (var i = 0; i < pooledObjects.Count; i++)
         {
             if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].tag == tag)
-            {
                 return pooledObjects[i];
-            }
         }
 
         foreach(var item in itemToPool)
