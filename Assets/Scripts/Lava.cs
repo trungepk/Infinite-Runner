@@ -8,7 +8,7 @@ public class Lava : MonoBehaviour {
     {
         if(other.tag == Constants.PlayerTag)
         {
-            EventDispatcher.RaiseOnFellDown();
+            EventDispatcher.RaiseEvent(EventID.OnFellDown);
         }
     }
 

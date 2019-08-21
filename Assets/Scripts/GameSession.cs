@@ -24,23 +24,23 @@ public class GameSession : MonoBehaviour {
 
     private void Start()
     {
-        EventDispatcher.OnPickUp += AddPoint;
-        EventDispatcher.OnPickUp += AddMoney;
-        EventDispatcher.OnCollideWithPlayer += ReduceLive;
-        EventDispatcher.OnCollideWithPlayer += ProcessPlayerDead;
-        EventDispatcher.OnFellDown += Shredded;
+        EventDispatcher.Subscribe(EventID.OnPickedUp, AddPoint);
+        EventDispatcher.Subscribe(EventID.OnPickedUp, AddMoney);
+        EventDispatcher.Subscribe(EventID.OnCollideWithPlayer, ReduceLive);
+        EventDispatcher.Subscribe(EventID.OnCollideWithPlayer, ProcessPlayerDead);
+        EventDispatcher.Subscribe(EventID.OnFellDown, Shredded);
     }
 
     private void OnDisable()
     {
-        EventDispatcher.OnPickUp -= AddPoint;
-        EventDispatcher.OnPickUp -= AddMoney;
-        EventDispatcher.OnCollideWithPlayer -= ReduceLive;
-        EventDispatcher.OnCollideWithPlayer -= ProcessPlayerDead;
-        EventDispatcher.OnFellDown -= Shredded;
+        EventDispatcher.Unsubscribe(EventID.OnPickedUp, AddPoint);
+        EventDispatcher.Unsubscribe(EventID.OnPickedUp, AddMoney);
+        EventDispatcher.Unsubscribe(EventID.OnCollideWithPlayer, ReduceLive);
+        EventDispatcher.Unsubscribe(EventID.OnCollideWithPlayer, ProcessPlayerDead);
+        EventDispatcher.Unsubscribe(EventID.OnFellDown, Shredded);
     }
 
-    private void ProcessPlayerDead(Obstacle obstacle)
+    private void ProcessPlayerDead(object obj)
     {
         if (live <= 0)
         {
@@ -52,12 +52,12 @@ public class GameSession : MonoBehaviour {
     {
         live = 0;
         Lose();
-        EventDispatcher.RaiseOnLiveChanged();
+        EventDispatcher.RaiseEvent(EventID.OnLiveChanged);
     }
 
     private void Lose()
     {
-        EventDispatcher.RaiseOnLoseGame();
+        EventDispatcher.RaiseEvent(EventID.OnLoseGame);
         Destroy(player);
         if (point > PlayerPrefs.GetInt(Constants.BestScore, 0))
         {
@@ -65,25 +65,28 @@ public class GameSession : MonoBehaviour {
         }
     }
 
-    private void AddPoint(PickableThing pickable)
+    private void AddPoint(object obj)
     {
+        PickableThing pickable = obj as PickableThing;
         int progress = point % pointTillAddLive; // Current point until add more live
         point += pickable.Point;
         if (progress + pickable.Point >= pointTillAddLive) { live++; }
 
-        EventDispatcher.RaiseOnPointChanged();
+        EventDispatcher.RaiseEvent(EventID.OnPointChanged);
     }
 
-    private void AddMoney(PickableThing pickable)
+    private void AddMoney(object obj)
     {
+        PickableThing pickable = obj as PickableThing;
         int currentMoney = PlayerPrefs.GetInt(Constants.Money);
         PlayerPrefs.SetInt(Constants.Money, currentMoney + pickable.MoneyValue);
     }
 
-    private void ReduceLive(Obstacle obstacle)
+    private void ReduceLive(object obj)
     {
+        Obstacle obstacle = obj as Obstacle;
         live -= obstacle.Damage;
-        EventDispatcher.RaiseOnLiveChanged();
+        EventDispatcher.RaiseEvent(EventID.OnLiveChanged);
     }
 
     public void ResetScore()

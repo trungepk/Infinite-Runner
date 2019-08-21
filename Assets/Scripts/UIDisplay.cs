@@ -27,11 +27,11 @@ public class UIDisplay : MonoBehaviour {
 
     private void Start()
     {
-        EventDispatcher.OnPointChanged += ChangeStatusUI;
-        EventDispatcher.OnLiveChanged += ChangeStatusUI;
-        EventDispatcher.OnMoneyChanged += DisplayMoneyAfterTrading;
-        EventDispatcher.OnSelectItem += DisplayItemInfo;
-        EventDispatcher.OnLoseGame += DisplayLoseGameUI;
+        EventDispatcher.Subscribe(EventID.OnPointChanged, ChangeStatusUI);
+        EventDispatcher.Subscribe(EventID.OnLiveChanged, ChangeStatusUI);
+        EventDispatcher.Subscribe(EventID.OnMoneyChanged, DisplayMoneyAfterTrading);
+        EventDispatcher.Subscribe(EventID.OnSelectItem, DisplayItemInfo);
+        EventDispatcher.Subscribe(EventID.OnLoseGame, DisplayLoseGameUI);
 
         gameSession = GameSession.instance;
         pointText.text = gameSession.point.ToString();
@@ -41,11 +41,11 @@ public class UIDisplay : MonoBehaviour {
 
     private void OnDisable()
     {
-        EventDispatcher.OnPointChanged -= ChangeStatusUI;
-        EventDispatcher.OnLiveChanged -= ChangeStatusUI;
-        EventDispatcher.OnMoneyChanged -= DisplayMoneyAfterTrading;
-        EventDispatcher.OnSelectItem -= DisplayItemInfo;
-        EventDispatcher.OnLoseGame -= DisplayLoseGameUI;
+        EventDispatcher.Unsubscribe(EventID.OnPointChanged, ChangeStatusUI);
+        EventDispatcher.Unsubscribe(EventID.OnLiveChanged, ChangeStatusUI);
+        EventDispatcher.Unsubscribe(EventID.OnMoneyChanged, DisplayMoneyAfterTrading);
+        EventDispatcher.Unsubscribe(EventID.OnSelectItem, DisplayItemInfo);
+        EventDispatcher.Unsubscribe(EventID.OnLoseGame, DisplayLoseGameUI);
     }
 
     private void ChangeStatusUI()
@@ -56,11 +56,12 @@ public class UIDisplay : MonoBehaviour {
         healthText.text = gameSession.live.ToString();
     }
 
-    private void DisplayItemInfo(string itemName, string itemDescription, int cost)
+    private void DisplayItemInfo(object obj)
     {
-        this.itemName.text = itemName;
-        this.itemDescription.text = itemDescription;
-        itemCost.text = "$" + cost;
+        ShopItem item = obj as ShopItem;
+        this.itemName.text = item.itemName;
+        this.itemDescription.text = item.itemDescription;
+        itemCost.text = "$" + item.cost;
     }
 
     private void DisplayMoneyAfterTrading()

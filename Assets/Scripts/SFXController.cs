@@ -9,25 +9,25 @@ public class SFXController : MonoBehaviour {
 
     private void Start()
     {
-        EventDispatcher.OnPickUp += TriggerPickupCoinSFX;
-        EventDispatcher.OnCollideWithPlayer += TriggerCollideSFX;
-        EventDispatcher.OnLoseGame += TriggerLoseSFX;
+        EventDispatcher.Subscribe(EventID.OnPickedUp, TriggerPickupCoinSFX);
+        EventDispatcher.Subscribe(EventID.OnCollideWithPlayer, TriggerCollideSFX);
+        EventDispatcher.Subscribe(EventID.OnLoseGame, TriggerLoseSFX);
     }
 
     private void OnDisable()
     {
-        EventDispatcher.OnPickUp -= TriggerPickupCoinSFX;
-        EventDispatcher.OnCollideWithPlayer -= TriggerCollideSFX;
-        EventDispatcher.OnLoseGame -= TriggerLoseSFX;
+        EventDispatcher.Unsubscribe(EventID.OnPickedUp, TriggerPickupCoinSFX);
+        EventDispatcher.Unsubscribe(EventID.OnCollideWithPlayer, TriggerCollideSFX);
+        EventDispatcher.Unsubscribe(EventID.OnLoseGame, TriggerLoseSFX);
     }
 
-    private void TriggerPickupCoinSFX(PickableThing pickable)
+    private void TriggerPickupCoinSFX(object obj)
     {
         if (!pickupCoin) { return; }
         AudioSource.PlayClipAtPoint(pickupCoin, Camera.main.transform.position, pickupCoinVolume);
     }
 
-    private void TriggerCollideSFX(Obstacle obstacle)
+    private void TriggerCollideSFX(object obj)
     {
         if (!collide) { return; }
         AudioSource.PlayClipAtPoint(collide, Camera.main.transform.position, collideVolume);

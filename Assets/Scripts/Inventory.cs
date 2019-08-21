@@ -19,9 +19,14 @@ public class Inventory : MonoBehaviour {
     }
     private void Start()
     {
-        EventDispatcher.OnBuyItem += AddItemToInventory;
+        EventDispatcher.Subscribe(EventID.OnBuyItem, AddItemToInventory);
         PopulatePossessingItem();
         possessingItemPaths = SaveSystem.ScanSaveFolder();
+    }
+
+    private void OnDisable()
+    {
+        EventDispatcher.Unsubscribe(EventID.OnBuyItem, AddItemToInventory);
     }
 
     private void PopulatePossessingItem()
@@ -81,7 +86,8 @@ public class Inventory : MonoBehaviour {
 
         int moneyAfterSelling = PlayerPrefs.GetInt(Constants.Money) + InventoryManager.selectedItem.value;
         PlayerPrefs.SetInt(Constants.Money, moneyAfterSelling);
-        EventDispatcher.RaiseOnMoneyChanged();
+
+        EventDispatcher.RaiseEvent(EventID.OnMoneyChanged);
     }
 
     public void UseItem()

@@ -927,20 +927,6 @@ Prefab:
       propertyPath: m_Name
       value: Lose Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 224378534828509422, guid: 94d026ed8eacdd847a8096844c0dc613,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224376518103215662, guid: 94d026ed8eacdd847a8096844c0dc613,
-        type: 2}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1537814635593420, guid: 94d026ed8eacdd847a8096844c0dc613, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 94d026ed8eacdd847a8096844c0dc613, type: 2}
   m_IsPrefabParent: 0

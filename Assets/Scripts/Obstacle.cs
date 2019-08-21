@@ -17,7 +17,7 @@ public class Obstacle : MonoBehaviour {
     {
         if (collision.gameObject.tag == Constants.PlayerTag)
         {
-            EventDispatcher.RaiseOnCollideWithPlayer(this);
+            EventDispatcher.RaiseEvent(EventID.OnCollideWithPlayer, this);
             gameObject.SetActive(false);
         }
     }
@@ -26,7 +26,7 @@ public class Obstacle : MonoBehaviour {
     {
         if(other.tag == Constants.PlayerTag)
         {
-            EventDispatcher.RaiseOnCollideWithPlayer(this);
+            EventDispatcher.RaiseEvent(EventID.OnCollideWithPlayer, this);
             gameObject.SetActive(false);
         }
     }

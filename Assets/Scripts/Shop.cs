@@ -38,9 +38,8 @@ public class Shop : MonoBehaviour {
         GameObject selectedItemObj = EventSystem.current.currentSelectedGameObject;
         int selectedItemIndex = selectedItemObj.transform.GetSiblingIndex();
         ShopManager.selectedItem = shopItems[selectedItemIndex];
-        ShopItem item = ShopManager.selectedItem;
 
-        EventDispatcher.RaiseOnSelectItem(item.itemName, item.itemDescription, item.cost);
+        EventDispatcher.RaiseEvent(EventID.OnSelectItem, ShopManager.selectedItem);
     }
 
     //Buy button calls this method on clicked
@@ -70,7 +69,7 @@ public class Shop : MonoBehaviour {
         SubstractMoney();
         ChangeSoldOutSprite();
         ShopManager.selectedItem.isAvailable = false;
-        EventDispatcher.RaiseOnBuyItem();
+        EventDispatcher.RaiseEvent(EventID.OnBuyItem);
         ShopManager.selectedItem = null;
     }
 
@@ -78,7 +77,8 @@ public class Shop : MonoBehaviour {
     {
         int moneyAfterPurchase = PlayerPrefs.GetInt(Constants.Money) - ShopManager.selectedItem.cost;
         PlayerPrefs.SetInt(Constants.Money, moneyAfterPurchase);
-        EventDispatcher.RaiseOnMoneyChanged();
+        //EventDispatcher.RaiseOnMoneyChanged();
+        EventDispatcher.RaiseEvent(EventID.OnMoneyChanged);
     }
 
     private void ChangeSoldOutSprite()

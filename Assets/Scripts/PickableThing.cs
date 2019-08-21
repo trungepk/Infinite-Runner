@@ -19,7 +19,8 @@ public class PickableThing : MonoBehaviour {
     {
         if (other.tag == Constants.PlayerTag)
         {
-            EventDispatcher.RaiseOnPickUp(this);
+            //EventDispatcher.RaiseOnPickedUp(this);
+            EventDispatcher.RaiseEvent(EventID.OnPickedUp, this);
             gameObject.SetActive(false);
         }
     }
